@@ -160,10 +160,14 @@ section.inner{max-width:960px;margin:0 auto;padding:4rem 2rem;}
 #gpay-btn:hover{opacity:.85;}
 [data-theme="dark"] #gpay-btn{background:#fff;color:#000;}
 .pay-note{font-size:12px;color:var(--text3);text-align:center;margin-top:1rem;}
-/* DONATE */
+/* SUPPORT */
 .donate-section{max-width:600px;margin:0 auto;}
 .donate-intro{font-size:15px;color:var(--text2);margin-bottom:1.5rem;text-align:center;}
 #crypto-list{display:flex;flex-direction:column;gap:.8rem;}
+.support-gpay-wrap{border-top:1px solid var(--border);padding-top:1.2rem;margin-top:1.2rem;}
+#support-gpay-btn{width:100%;max-width:340px;display:flex;align-items:center;justify-content:center;gap:.6rem;padding:13px;border-radius:10px;background:#000;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .18s;margin:0 auto;}
+#support-gpay-btn:hover{opacity:.85;}
+[data-theme="dark"] #support-gpay-btn{background:#fff;color:#000;}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -185,7 +189,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
     <div class="nav-right">
       <div class="nav-links">
         <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a>
-        <a href="#projects">Projects</a><a href="#services">Services</a><a href="#contact">Contact</a><a href="#donate">Donate</a>
+        <a href="#projects">Projects</a><a href="#services">Services</a><a href="#contact">Contact</a><a href="#support">Support</a>
       </div>
       <button class="theme-btn" id="themeToggle">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
@@ -349,11 +353,20 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 </section>
 <div class="divider"></div>
 
-<section class="inner" id="donate">
+<section class="inner" id="support">
   <div class="section-label">Support my work</div>
   <div class="donate-section">
-    <p class="donate-intro reveal">If you found my work helpful, consider a crypto donation — every bit is appreciated!</p>
+    <p class="donate-intro reveal">If you found my work helpful, consider supporting via crypto or Google Pay — every bit is appreciated!</p>
     <div id="crypto-list"></div>
+    <div class="support-gpay-wrap reveal">
+      <p style="text-align:center;font-size:13px;color:var(--text3);margin:1.2rem 0 .8rem;">Or pay directly with Google Pay:</p>
+      <div class="amt-row" style="max-width:340px;margin:0 auto .8rem;">
+        <input type="number" id="support-gpay-amount" placeholder="Enter amount (USD)" min="1"/>
+        <span>USD</span>
+      </div>
+      <button id="support-gpay-btn">G&nbsp; Pay with Google Pay</button>
+      <p class="pay-note" style="margin-top:.6rem;">Requires a merchant account. <a href="mailto:jasemalyounes@gmail.com" style="color:var(--accent);">Contact me</a> to arrange payment.</p>
+    </div>
   </div>
 </section>
 
@@ -702,7 +715,36 @@ document.getElementById('gpay-btn').addEventListener('click', function(){
     });
 });
 
-/* ---- DONATE SECTION ---- */
+document.getElementById('support-gpay-btn').addEventListener('click', function(){
+  var amt = document.getElementById('support-gpay-amount').value;
+  if(!amt || amt <= 0){ alert('Please enter a valid amount.'); return; }
+  if(!gpayClient){ alert('Google Pay is loading. Please try again.'); return; }
+
+  var req = Object.assign({}, gpayBaseRequest, {
+    allowedPaymentMethods: gpayAllowedMethods,
+    transactionInfo: {
+      totalPriceStatus: 'FINAL',
+      totalPrice: parseFloat(amt).toFixed(2),
+      currencyCode: 'USD',
+      countryCode: 'US'
+    },
+    merchantInfo: {
+      merchantId: 'BCR2DN7TTDNL3AAR',
+      merchantName: 'Jasem Ahmad Alyounes'
+    }
+  });
+
+  gpayClient.loadPaymentData(req)
+    .then(function(){
+      alert('Payment received! Thank you for your support!');
+      document.getElementById('support-gpay-amount').value = '';
+    })
+    .catch(function(err){
+      if(err.statusCode !== 'CANCELED') alert('Payment error. Please try again or contact me directly.');
+    });
+});
+
+/* ---- SUPPORT SECTION ---- */
 var clist = document.getElementById('crypto-list');
 var dqrGen = {};
 COINS.forEach(function(c, i){
