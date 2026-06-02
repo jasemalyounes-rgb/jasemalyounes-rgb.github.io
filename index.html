@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Jasem Ahmad Alyounes</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+[data-theme="light"]{--bg:#fff;--bg2:#f7f7f5;--bg3:#efefeb;--text:#1a1a1a;--text2:#555;--text3:#999;--border:#e2e2da;--accent:#2563eb;--accent2:#1d4ed8;--avatar-ring:rgba(37,99,235,.2);}
+[data-theme="dark"]{--bg:#0d0d0d;--bg2:#161614;--bg3:#1e1e1c;--text:#f0ede8;--text2:#999;--text3:#555;--border:#262624;--accent:#60a5fa;--accent2:#93c5fd;--avatar-ring:rgba(96,165,250,.25);}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;overflow-x:hidden;transition:background .3s,color .3s;}
+a{color:inherit;text-decoration:none;}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem;transition:background .3s,border-color .3s;}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-size:15px;font-weight:600;letter-spacing:-.3px;display:flex;align-items:center;gap:.5rem;}
+.nav-logo img{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--avatar-ring);}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-links{display:flex;gap:1.4rem;}
+.nav-links a{font-size:13px;color:var(--text2);transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--text2);font-size:13px;display:flex;align-items:center;gap:.3rem;transition:all .2s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);}
+.hero{padding:5rem 2rem 3rem;position:relative;overflow:hidden;}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.hero-content{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;max-width:960px;margin:0 auto;}
+@media(max-width:640px){.hero-content{grid-template-columns:1fr;}}
+.hero-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:12px;color:var(--accent);background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.18);border-radius:99px;padding:4px 14px;margin-bottom:1.2rem;}
+.hero-tag span{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+h1.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:.8rem;}
+.hero-sub{font-size:1rem;color:var(--text2);max-width:460px;margin-bottom:2rem;min-height:1.6em;}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--accent);vertical-align:text-bottom;animation:blink .8s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:all .18s;border:1px solid var(--border);}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--text);}
+.btn-ghost:hover{background:var(--bg2);transform:translateY(-1px);}
+.meta-row{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);}
+.meta-item{display:flex;align-items:center;gap:.4rem;font-size:13px;color:var(--text3);}
+.meta-item svg{width:14px;height:14px;}
+.hero-visual{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.avatar-wrap{position:relative;width:130px;height:130px;}
+.avatar-wrap img{width:130px;height:130px;border-radius:50%;border:3px solid var(--avatar-ring);object-fit:cover;}
+.avatar-ring-anim{position:absolute;inset:-8px;border-radius:50%;border:1.5px dashed var(--accent);opacity:.35;animation:spin 12s linear infinite;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.tech-svg{width:160px;height:100px;}
+section.inner{max-width:960px;margin:0 auto;padding:4rem 2rem;}
+.divider{height:1px;background:var(--border);max-width:960px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;opacity:.75;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:600px){.about-grid{grid-template-columns:1fr;}}
+.about-text p{color:var(--text2);margin-bottom:1rem;font-size:15px;}
+.stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;transition:border-color .2s,transform .2s;}
+.stat-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.stat-num{font-size:1.8rem;font-weight:700;letter-spacing:-1px;color:var(--accent);}
+.stat-desc{font-size:12px;color:var(--text3);margin-top:2px;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;}
+.skill-group{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color .2s,transform .2s;}
+.skill-group:hover{border-color:var(--accent);transform:translateY(-2px);}
+.skill-group-title{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;opacity:.75;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.35rem;}
+.tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:99px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);}
+.exp-list{display:flex;flex-direction:column;gap:1.5rem;}
+.exp-card{display:grid;grid-template-columns:auto 1fr;gap:1rem 1.4rem;padding:1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;transition:border-color .2s,transform .2s;}
+.exp-card:hover{border-color:var(--accent);transform:translateX(4px);}
+.exp-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0;}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.4rem;margin-bottom:.4rem;}
+.exp-title{font-size:15px;font-weight:600;}
+.exp-period{font-size:11px;color:var(--text3);background:var(--bg3);padding:3px 10px;border-radius:99px;border:1px solid var(--border);}
+.exp-company{font-size:13px;color:var(--accent);margin-bottom:.6rem;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.exp-bullets li{font-size:14px;color:var(--text2);padding-left:1rem;position:relative;}
+.exp-bullets li::before{content:"–";position:absolute;left:0;color:var(--text3);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;}
+.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.project-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+.project-card:hover::before{transform:scaleX(1);}
+.project-icon{width:36px;height:36px;border-radius:9px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;}
+.project-icon svg{width:17px;height:17px;color:var(--accent);}
+.project-name{font-size:15px;font-weight:600;}
+.project-desc{font-size:13px;color:var(--text2);line-height:1.6;flex:1;}
+.project-stack{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.2rem;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.2rem;display:flex;align-items:center;gap:.8rem;transition:border-color .2s,transform .2s;}
+.contact-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.contact-icon{width:34px;height:34px;border-radius:8px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-icon svg{width:15px;height:15px;color:var(--accent);}
+.contact-label{font-size:11px;color:var(--text3);}
+.contact-value{font-size:13px;font-weight:500;}
+/* SERVICES */
+.svc-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.svc-tab{padding:7px 16px;border-radius:99px;font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .18s;}
+.svc-tab.active,.svc-tab:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.svc-service{display:none;}
+.svc-service.active{display:block;}
+.svc-header{margin-bottom:1.5rem;}
+.svc-header h3{font-size:1.2rem;font-weight:600;margin-bottom:.3rem;}
+.svc-header p{font-size:14px;color:var(--text2);}
+.tiers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.tier-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;position:relative;transition:border-color .2s,transform .2s;}
+.tier-card:hover{transform:translateY(-3px);}
+.tier-card.popular{border-color:var(--accent);}
+.tier-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--accent);color:#fff;padding:3px 14px;border-radius:0 0 8px 8px;}
+.tier-name{font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:.4rem;}
+.tier-price{font-size:2rem;font-weight:700;color:var(--text);letter-spacing:-1.5px;line-height:1;}
+.tier-price span{font-size:13px;font-weight:400;color:var(--text3);letter-spacing:0;}
+.tier-desc{font-size:13px;color:var(--text2);line-height:1.5;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+.tier-features{list-style:none;display:flex;flex-direction:column;gap:.4rem;flex:1;margin-top:.2rem;}
+.tier-features li{font-size:13px;color:var(--text2);display:flex;align-items:flex-start;gap:.5rem;}
+.tier-features li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;}
+.tier-features li.no::before{content:'✕';color:var(--text3);}
+.tier-features li.no{color:var(--text3);}
+.tier-btn{margin-top:1rem;padding:9px 0;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;text-align:center;border:1px solid var(--accent);color:var(--accent);background:transparent;transition:background .18s,color .18s;width:100%;}
+.tier-btn:hover,.tier-card.popular .tier-btn{background:var(--accent);color:#fff;}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--bg);border:1px solid var(--border);border-radius:18px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:2rem;position:relative;transform:translateY(16px);transition:transform .25s;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);font-size:18px;}
+.modal-close:hover{border-color:var(--accent);color:var(--accent);}
+.modal-title{font-size:1.1rem;font-weight:700;margin-bottom:.3rem;}
+.modal-sub{font-size:13px;color:var(--text2);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.modal-sub strong{color:var(--accent);}
+.pay-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;}
+.pay-tab{flex:1;padding:9px;border-radius:9px;font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;text-align:center;transition:all .18s;}
+.pay-tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.pay-panel{display:none;}
+.pay-panel.active{display:block;}
+.co-coin{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border-radius:10px;border:1.5px solid var(--border);cursor:pointer;transition:border-color .18s;margin-bottom:.6rem;}
+.co-coin.selected{border-color:var(--accent);background:rgba(37,99,235,.05);}
+.co-sym{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.co-info{flex:1;min-width:0;}
+.co-name{font-size:13px;font-weight:600;}
+.co-addr{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.co-check{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.co-coin.selected .co-check{background:var(--accent);border-color:var(--accent);}
+.co-coin.selected .co-check::after{content:'✓';font-size:10px;color:#fff;}
+.co-detail{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-top:.8rem;display:none;}
+.co-detail.show{display:block;}
+.co-qr-wrap{display:flex;gap:1rem;align-items:flex-start;}
+.co-qr-wrap>div:first-child{background:#fff;padding:8px;border-radius:8px;flex-shrink:0;}
+.co-full-addr{font-size:12px;color:var(--text2);word-break:break-all;line-height:1.7;margin-bottom:.8rem;}
+.copy-btn{width:100%;padding:9px;border-radius:8px;border:1px solid var(--accent);color:var(--accent);background:transparent;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;}
+.copy-btn:hover{background:var(--accent);color:#fff;}
+.amt-row{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+.amt-row input{flex:1;padding:9px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:14px;outline:none;}
+.amt-row input:focus{border-color:var(--accent);}
+.amt-row span{font-size:13px;color:var(--text3);}
+.gpay-info{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7;}
+.gpay-info strong{color:var(--text);}
+#gpay-btn{width:100%;padding:13px;border-radius:10px;background:#000;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;transition:opacity .18s;}
+#gpay-btn:hover{opacity:.85;}
+[data-theme="dark"] #gpay-btn{background:#fff;color:#000;}
+.pay-note{font-size:12px;color:var(--text3);text-align:center;margin-top:1rem;}
+/* DONATE */
+.donate-section{max-width:600px;margin:0 auto;}
+.donate-intro{font-size:15px;color:var(--text2);margin-bottom:1.5rem;text-align:center;}
+#crypto-list{display:flex;flex-direction:column;gap:.8rem;}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:13px;color:var(--text3);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">
+      <img src="https://avatars.githubusercontent.com/u/259720871?v=4" alt="Jasem"/>
+      Jasem Alyounes
+    </span>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a>
+        <a href="#projects">Projects</a><a href="#services">Services</a><a href="#contact">Contact</a><a href="#donate">Donate</a>
+      </div>
+      <button class="theme-btn" id="themeToggle">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+        <span id="themeLabel">Dark</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <canvas class="hero-canvas" id="matrixCanvas"></canvas>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag"><span></span>Available for opportunities</div>
+      <h1 class="hero-title">Jasem Ahmad<br>Alyounes</h1>
+      <p class="hero-sub"><span id="typed-sub"></span><span class="cursor"></span></p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get in touch
+        </a>
+        <a href="https://github.com/jasemalyounes-rgb" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="#services" class="btn btn-ghost">Services →</a>
+      </div>
+      <div class="meta-row">
+        <span class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Beirut, Lebanon</span>
+        <span class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>5+ years exp.</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal-right">
+      <div class="avatar-wrap">
+        <div class="avatar-ring-anim"></div>
+        <img src="https://avatars.githubusercontent.com/u/259720871?v=4" alt="Jasem Ahmad Alyounes"/>
+      </div>
+      <svg class="tech-svg" viewBox="0 0 160 70" xmlns="http://www.w3.org/2000/svg">
+        <defs><style>.tl{font-family:monospace;font-size:9px;fill:var(--accent,#2563eb);opacity:.6;}.tc{fill:none;stroke:var(--accent,#2563eb);stroke-width:.8;opacity:.25;}.td{fill:var(--accent,#2563eb);opacity:.55;}@keyframes tfl{0%,100%{opacity:.5;transform:translateY(0);}50%{opacity:.9;transform:translateY(-3px);}}.f1{animation:tfl 3s ease-in-out infinite;}.f2{animation:tfl 3.8s ease-in-out infinite .6s;}.f3{animation:tfl 2.8s ease-in-out infinite 1.2s;}.f4{animation:tfl 4s ease-in-out infinite 1.8s;}</style></defs>
+        <line class="tc" x1="20" y1="35" x2="80" y2="35"/><line class="tc" x1="80" y1="35" x2="140" y2="35"/><line class="tc" x1="80" y1="35" x2="80" y2="10"/><line class="tc" x1="80" y1="35" x2="80" y2="60"/>
+        <circle class="td f1" cx="20" cy="35" r="4"/><circle class="td f2" cx="140" cy="35" r="4"/><circle class="td f3" cx="80" cy="10" r="3.5"/><circle class="td f4" cx="80" cy="60" r="3.5"/>
+        <circle class="td" cx="80" cy="35" r="6" opacity=".2"/><circle class="td" cx="80" cy="35" r="3.5"/>
+        <text class="tl f1" x="6" y="32">py</text><text class="tl f2" x="126" y="32">sql</text><text class="tl f3" x="68" y="8">&lt;/&gt;</text><text class="tl f4" x="66" y="58">{ js }</text>
+      </svg>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<section class="inner" id="about">
+  <div class="section-label">About me</div>
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <p>Senior Software Engineer with a Master's in Web Science and a Bachelor's in Software Engineering. Over 5 years of experience building scalable full-stack applications.</p>
+      <p>Expert in Odoo 19 and Python, bridging complex enterprise data (Oracle) with modern web architectures. CCNA certified. Fluent in Arabic and English.</p>
+    </div>
+    <div class="stat-cards reveal-right">
+      <div class="stat-card"><div class="stat-num">5+</div><div class="stat-desc">Years experience</div></div>
+      <div class="stat-card"><div class="stat-num">M.Sc.</div><div class="stat-desc">Web Science — SVU</div></div>
+      <div class="stat-card"><div class="stat-num">B.Sc.</div><div class="stat-desc">Software Engineering</div></div>
+      <div class="stat-card"><div class="stat-num">CCNA</div><div class="stat-desc">Certified</div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section class="inner" id="skills">
+  <div class="section-label">Technical skills</div>
+  <div class="skills-grid">
+    <div class="skill-group reveal"><div class="skill-group-title">Languages</div><div class="skill-tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">PHP</span><span class="tag">SQL</span></div></div>
+    <div class="skill-group reveal" style="transition-delay:.08s"><div class="skill-group-title">Frameworks</div><div class="skill-tags"><span class="tag">Odoo 19</span><span class="tag">Laravel</span><span class="tag">Spring Boot</span></div></div>
+    <div class="skill-group reveal" style="transition-delay:.16s"><div class="skill-group-title">Databases</div><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MySQL</span></div></div>
+    <div class="skill-group reveal" style="transition-delay:.24s"><div class="skill-group-title">APIs & Tools</div><div class="skill-tags"><span class="tag">RESTful APIs</span><span class="tag">XML Views</span><span class="tag">Git</span></div></div>
+    <div class="skill-group reveal" style="transition-delay:.32s"><div class="skill-group-title">Project & Mgmt</div><div class="skill-tags"><span class="tag">Coordination</span><span class="tag">Reporting</span><span class="tag">Risk ID</span></div></div>
+    <div class="skill-group reveal" style="transition-delay:.4s"><div class="skill-group-title">Networking</div><div class="skill-tags"><span class="tag">CCNA</span><span class="tag">IT Infrastructure</span></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section class="inner" id="experience">
+  <div class="section-label">Experience</div>
+  <div class="exp-list">
+    <div class="exp-card reveal">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-header"><span class="exp-title">Independent ERP Developer</span><span class="exp-period">2024 – Present</span></div>
+        <div class="exp-company">Confidential Projects</div>
+        <ul class="exp-bullets">
+          <li>Architected a custom Odoo 19 task management solution for R&D tracking.</li>
+          <li>Designed complex XML inherited views and custom list-view actions.</li>
+          <li>Built scalable backend logic using Python and PostgreSQL.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card reveal" style="transition-delay:.12s">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-header"><span class="exp-title">Lead Software Developer / Technical Team Lead</span><span class="exp-period">2019 – 2024</span></div>
+        <div class="exp-company">LAZER NET Company, Damascus, Syria</div>
+        <ul class="exp-bullets">
+          <li>Managed full project lifecycle from requirements to deployment.</li>
+          <li>Designed and maintained complex relational databases.</li>
+          <li>Coordinated cross-functional teams and risk assessment strategies.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section class="inner" id="projects">
+  <div class="section-label">Projects</div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+      <div class="project-name">Odoo 19 R&D Task Manager</div>
+      <div class="project-desc">Custom ERP module for R&D project tracking with manager delegation and XML workflows.</div>
+      <div class="project-stack"><span class="tag">Odoo 19</span><span class="tag">Python</span><span class="tag">PostgreSQL</span></div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.1s">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+      <div class="project-name">Oracle–Web Bridge</div>
+      <div class="project-desc">Enterprise integration layer connecting Oracle databases with modern web architectures.</div>
+      <div class="project-stack"><span class="tag">Oracle</span><span class="tag">Python</span><span class="tag">REST API</span></div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.2s">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <div class="project-name">Multi-Dept Project Platform</div>
+      <div class="project-desc">Full-stack project management system for cross-functional coordination and reporting.</div>
+      <div class="project-stack"><span class="tag">Laravel</span><span class="tag">PHP</span><span class="tag">MySQL</span></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section class="inner" id="services">
+  <div class="section-label">Services & pricing</div>
+  <p class="reveal" style="color:var(--text2);font-size:15px;margin-bottom:1.5rem;">Choose a service and pick the tier that fits. All projects start with a free consultation.</p>
+  <div class="svc-tabs" id="svcTabs"></div>
+  <div id="svcServices"></div>
+</section>
+<div class="divider"></div>
+
+<section class="inner" id="contact">
+  <div class="section-label">Get in touch</div>
+  <div class="contact-grid">
+    <a class="contact-card reveal" href="mailto:jasemalyounes@gmail.com">
+      <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div style="min-width:0;"><div class="contact-label">Email</div><div class="contact-value" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">jasemalyounes@gmail.com</div></div>
+    </a>
+    <a class="contact-card reveal" style="transition-delay:.1s" href="tel:+19316237215">
+      <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <div><div class="contact-label">Phone</div><div class="contact-value">+1 (931) 623-7215</div></div>
+    </a>
+    <a class="contact-card reveal" style="transition-delay:.2s" href="https://github.com/jasemalyounes-rgb" target="_blank">
+      <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
+      <div><div class="contact-label">GitHub</div><div class="contact-value">jasemalyounes-rgb</div></div>
+    </a>
+    <div class="contact-card reveal" style="transition-delay:.3s">
+      <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+      <div><div class="contact-label">Location</div><div class="contact-value">Beirut, Lebanon</div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section class="inner" id="donate">
+  <div class="section-label">Support my work</div>
+  <div class="donate-section">
+    <p class="donate-intro reveal">If you found my work helpful, consider a crypto donation — every bit is appreciated!</p>
+    <div id="crypto-list"></div>
+  </div>
+</section>
+
+<footer><p>© 2026 Jasem Ahmad Alyounes · <a href="https://github.com/jasemalyounes-rgb" target="_blank" style="color:var(--accent);">github.com/jasemalyounes-rgb</a></p></footer>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn">×</button>
+    <div class="modal-title">Complete your order</div>
+    <div class="modal-sub">Service: <strong id="co-service">—</strong> &nbsp;·&nbsp; Price: <strong id="co-price">—</strong></div>
+    <div class="pay-tabs">
+      <button class="pay-tab active" id="tabCrypto">₿ Crypto</button>
+      <button class="pay-tab" id="tabGpay">G Pay</button>
+    </div>
+    <div class="pay-panel active" id="panel-crypto">
+      <div class="amt-row">
+        <input type="number" id="co-amount" placeholder="Enter amount (USD)" min="1"/>
+        <span>USD</span>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:1rem;">Select a wallet to pay with:</p>
+      <div id="co-coins"></div>
+      <div class="co-detail" id="co-detail">
+        <div class="co-qr-wrap">
+          <div id="co-qr"></div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:12px;color:var(--text3);margin-bottom:6px;" id="co-detail-label">Send to:</div>
+            <div class="co-full-addr" id="co-full-addr"></div>
+            <button class="copy-btn" id="co-copy-btn">Copy address</button>
+          </div>
+        </div>
+      </div>
+      <p class="pay-note">Send the exact amount above, then email me the TX hash to confirm your order.</p>
+    </div>
+    <div class="pay-panel" id="panel-gpay">
+      <div class="gpay-info"><strong>Google Pay</strong> lets clients pay via their Google account.<br><br>Tap the button below to pay securely with Google Pay.</div>
+      <div class="amt-row">
+        <input type="number" id="gpay-amount" placeholder="Enter amount (USD)" min="1"/>
+        <span>USD</span>
+      </div>
+      <button id="gpay-btn">G&nbsp; Pay with Google Pay</button>
+      <p class="pay-note">Requires a merchant account. <a href="mailto:jasemalyounes@gmail.com" style="color:var(--accent);">Contact me</a> to arrange payment.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const COINS = [
+  {symbol:'BTC', name:'Bitcoin',      addr:'1Q18sTrtUco2MzcKPyyAhRFZGFPbf65gpn',              color:'#f7931a'},
+  {symbol:'ETH', name:'Ethereum',     addr:'0xe19479606e3490f97d8667ca3524b588468641a7',       color:'#627eea'},
+  {symbol:'USDT',name:'Tether (USDT)',addr:'0xe19479606e3490f97d8667ca3524b588468641a7',       color:'#26a17b'},
+  {symbol:'LTC', name:'Litecoin',     addr:'ltc1qyudg0w7kt3cu5rdg6jxl2ncjke3t2gked36ecs',     color:'#345d9d'},
+];
+
+const SERVICES = [
+  {id:'odoo',label:'Odoo ERP',desc:'Custom Odoo modules and full ERP implementations.',tiers:[
+    {name:'Starter',price:'$300',unit:'/module',popular:false,desc:'Single module for small teams.',features:['1 custom module','XML view design','Basic Python logic','Email support','-Data migration','-Training']},
+    {name:'Business',price:'$900',unit:'/project',popular:true,desc:'Multi-module for growing businesses.',features:['Up to 4 modules','Complex XML workflows','Full Python backend','PostgreSQL optimization','Basic data migration','1 training session']},
+    {name:'Enterprise',price:'$2,500',unit:'/project',popular:false,desc:'Full ERP rollout.',features:['Unlimited modules','Full ERP implementation','Oracle/PG integration','Complete data migration','3 training sessions','3 months support']},
+  ]},
+  {id:'web',label:'Website Building',desc:'Professional websites from landing pages to full corporate sites.',tiers:[
+    {name:'Landing Page',price:'$250',unit:'/site',popular:false,desc:'Fast single-page site.',features:['1-page responsive design','Contact form','SEO basics','Mobile-optimized','-CMS integration','-Custom animations']},
+    {name:'Business Site',price:'$700',unit:'/project',popular:true,desc:'Multi-page with CMS.',features:['Up to 6 pages','CMS integration','Custom design','SEO optimization','Lead forms','Basic animations']},
+    {name:'Full Corporate',price:'$1,800',unit:'/project',popular:false,desc:'Full-featured corporate site.',features:['Unlimited pages','Advanced CMS','Custom animations','Performance optimization','Blog/news module','6 months maintenance']},
+  ]},
+  {id:'saas',label:'SaaS Development',desc:'Build SaaS products from MVP to production-ready platforms.',tiers:[
+    {name:'MVP',price:'$1,200',unit:'/project',popular:false,desc:'Core features, fast to market.',features:['Core feature set','User auth & roles','Basic dashboard','REST API','-Payment integration','-Multi-tenancy']},
+    {name:'Growth',price:'$3,500',unit:'/project',popular:true,desc:'Full-featured with payments & analytics.',features:['All MVP features','Payment integration','Analytics dashboard','Multi-tenant support','Email notifications','3 months support']},
+    {name:'Scale',price:'$8,000',unit:'/project',popular:false,desc:'Production-grade at scale.',features:['All Growth features','Microservices','CI/CD pipeline','Advanced security','Custom integrations','6 months support']},
+  ]},
+  {id:'api',label:'API Development',desc:'Clean, documented RESTful APIs.',tiers:[
+    {name:'Basic',price:'$200',unit:'/API',popular:false,desc:'Simple CRUD API.',features:['Up to 10 endpoints','Basic auth','JSON responses','Postman docs','-Rate limiting','-Webhooks']},
+    {name:'Standard',price:'$500',unit:'/API',popular:true,desc:'Production-ready with full docs.',features:['Up to 30 endpoints','JWT/OAuth2','Rate limiting','Full API docs','Error handling','Webhook support']},
+    {name:'Advanced',price:'$1,200',unit:'/API',popular:false,desc:'Enterprise-grade with versioning.',features:['Unlimited endpoints','Advanced security','API versioning','Monitoring & logging','3rd-party integrations','2 months support']},
+  ]},
+  {id:'db',label:'Database',desc:'Architecture, optimization, Oracle/PostgreSQL.',tiers:[
+    {name:'Audit',price:'$150',unit:'/session',popular:false,desc:'Review existing database.',features:['Schema review','Query analysis','Performance report','Recommendations','-Redesign','-Migration']},
+    {name:'Design',price:'$400',unit:'/project',popular:true,desc:'Full database design.',features:['Schema design','Index optimization','Stored procedures','Oracle/PostgreSQL','Data integrity','1 month support']},
+    {name:'Migration',price:'$900',unit:'/project',popular:false,desc:'Full data migration.',features:['Full schema migration','Data transformation','Validation & testing','Rollback plan','Performance tuning','Post-migration support']},
+  ]},
+  {id:'consulting',label:'Consulting',desc:'Architecture, code quality and tech strategy.',tiers:[
+    {name:'Hourly',price:'$60',unit:'/hour',popular:false,desc:'Pay-as-you-go advice.',features:['1-on-1 session','Architecture advice','Code review','Tech stack guidance','-Follow-up report','-Ongoing support']},
+    {name:'Sprint',price:'$400',unit:'/week',popular:true,desc:'Weekly advisory.',features:['Up to 8 hrs/week','Code & PR reviews','Architecture sessions','Written recommendations','Slack/email access','Weekly summary']},
+    {name:'Retainer',price:'$1,200',unit:'/month',popular:false,desc:'Ongoing partnership.',features:['Up to 30 hrs/month','Full technical oversight','Team mentoring','Architecture planning','Priority response','Monthly strategy report']},
+  ]},
+];
+
+/* ---- THEME ---- */
+document.getElementById('themeToggle').addEventListener('click', function(){
+  var html = document.documentElement;
+  var dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+  document.getElementById('themeLabel').textContent = dark ? 'Dark' : 'Light';
+  document.getElementById('themeIcon').innerHTML = dark
+    ? '<path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>'
+    : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+});
+
+/* ---- MATRIX ---- */
+var canvas = document.getElementById('matrixCanvas');
+var ctx = canvas.getContext('2d');
+function resizeCanvas(){ canvas.width = canvas.parentElement.offsetWidth; canvas.height = canvas.parentElement.offsetHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+var chars = '01{}[]</>defclassreturn'.split('');
+var drops = [];
+function initDrops(){ var cols = Math.floor(canvas.width/28); drops = []; for(var i=0;i<cols;i++) drops.push(Math.random()*-50); }
+initDrops();
+setInterval(function(){
+  var dark = document.documentElement.getAttribute('data-theme')==='dark';
+  ctx.fillStyle = dark ? 'rgba(13,13,13,0.18)' : 'rgba(255,255,255,0.18)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = dark ? 'rgba(96,165,250,0.18)' : 'rgba(37,99,235,0.09)';
+  ctx.font = '11px monospace';
+  for(var i=0;i<drops.length;i++){
+    ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*28, drops[i]*18);
+    if(drops[i]*18 > canvas.height && Math.random() > .97) drops[i] = 0;
+    drops[i] += .4;
+  }
+}, 80);
+
+/* ---- TYPING ---- */
+var phrases = ['Software Engineer   ','Odoo 19 & Python Expert','Full-Stack Developer','ERP & SaaS Solutions'];
+var pi=0, ci=0, del=false;
+var typedEl = document.getElementById('typed-sub');
+function type(){
+  var cur = phrases[pi];
+  if(!del){ typedEl.textContent = cur.slice(0,++ci); if(ci===cur.length){del=true;setTimeout(type,2000);return;} }
+  else{ typedEl.textContent = cur.slice(0,--ci); if(ci===0){del=false;pi=(pi+1)%phrases.length;} }
+  setTimeout(type, del?35:75);
+}
+type();
+
+/* ---- REVEAL ---- */
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){ obs.observe(el); });
+
+/* ---- BUILD SERVICES ---- */
+var tabsEl = document.getElementById('svcTabs');
+var svcEl  = document.getElementById('svcServices');
+
+SERVICES.forEach(function(s, si){
+  // tab
+  var tab = document.createElement('button');
+  tab.className = 'svc-tab' + (si===0?' active':'');
+  tab.textContent = s.label;
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.svc-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.svc-service').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    document.getElementById('svc-'+s.id).classList.add('active');
+  });
+  tabsEl.appendChild(tab);
+
+  // service panel
+  var panel = document.createElement('div');
+  panel.className = 'svc-service' + (si===0?' active':'');
+  panel.id = 'svc-'+s.id;
+
+  var hdr = document.createElement('div');
+  hdr.className = 'svc-header';
+  hdr.innerHTML = '<h3>'+s.label+'</h3><p>'+s.desc+'</p>';
+  panel.appendChild(hdr);
+
+  var grid = document.createElement('div');
+  grid.className = 'tiers-grid';
+
+  s.tiers.forEach(function(t){
+    var card = document.createElement('div');
+    card.className = 'tier-card' + (t.popular?' popular':'');
+
+    if(t.popular){
+      var badge = document.createElement('div');
+      badge.className = 'tier-badge';
+      badge.textContent = 'Most Popular';
+      card.appendChild(badge);
+    }
+
+    var nameEl = document.createElement('div'); nameEl.className='tier-name'; nameEl.textContent=t.name; card.appendChild(nameEl);
+    var priceEl = document.createElement('div'); priceEl.className='tier-price'; priceEl.innerHTML=t.price+' <span>'+t.unit+'</span>'; card.appendChild(priceEl);
+    var descEl = document.createElement('div'); descEl.className='tier-desc'; descEl.textContent=t.desc; card.appendChild(descEl);
+
+    var ul = document.createElement('ul'); ul.className='tier-features';
+    t.features.forEach(function(f){
+      var li = document.createElement('li');
+      if(f.startsWith('-')){ li.className='no'; li.textContent=f.slice(1); }
+      else { li.textContent=f; }
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+
+    var btn = document.createElement('button');
+    btn.className = 'tier-btn';
+    btn.textContent = 'Get started';
+    (function(svcName, tierName, tierPrice){
+      btn.addEventListener('click', function(){
+        openCheckout(svcName + ' – ' + tierName, tierPrice);
+      });
+    })(s.label, t.name, t.price);
+    card.appendChild(btn);
+    grid.appendChild(card);
+  });
+
+  panel.appendChild(grid);
+  svcEl.appendChild(panel);
+});
+
+/* ---- CHECKOUT ---- */
+var selectedCoin = null;
+var coQrGen = {};
+
+function openCheckout(service, price){
+  document.getElementById('co-service').textContent = service;
+  document.getElementById('co-price').textContent = price;
+  document.getElementById('co-amount').value = '';
+  document.getElementById('gpay-amount').value = '';
+  selectedCoin = null;
+  coQrGen = {};
+  document.getElementById('co-detail').classList.remove('show');
+
+  // build coin list
+  var coEl = document.getElementById('co-coins');
+  coEl.innerHTML = '';
+  COINS.forEach(function(c, i){
+    var row = document.createElement('div');
+    row.className = 'co-coin';
+    row.innerHTML =
+      '<div class="co-sym" style="background:'+c.color+'18;border:1.5px solid '+c.color+'44"><span style="color:'+c.color+'">'+c.symbol+'</span></div>'+
+      '<div class="co-info"><div class="co-name">'+c.name+'</div><div class="co-addr">'+c.addr+'</div></div>'+
+      '<div class="co-check" id="co-chk-'+i+'"></div>';
+    (function(idx){ row.addEventListener('click', function(){ selectCoin(idx); }); })(i);
+    coEl.appendChild(row);
+  });
+
+  // show modal
+  document.getElementById('checkoutModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // reset to crypto tab
+  document.getElementById('panel-crypto').classList.add('active');
+  document.getElementById('panel-gpay').classList.remove('active');
+  document.getElementById('tabCrypto').classList.add('active');
+  document.getElementById('tabGpay').classList.remove('active');
+}
+
+function closeCheckout(){
+  document.getElementById('checkoutModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalCloseBtn').addEventListener('click', closeCheckout);
+document.getElementById('checkoutModal').addEventListener('click', function(e){
+  if(e.target === this) closeCheckout();
+});
+
+document.getElementById('tabCrypto').addEventListener('click', function(){
+  document.getElementById('panel-crypto').classList.add('active');
+  document.getElementById('panel-gpay').classList.remove('active');
+  this.classList.add('active');
+  document.getElementById('tabGpay').classList.remove('active');
+});
+document.getElementById('tabGpay').addEventListener('click', function(){
+  document.getElementById('panel-gpay').classList.add('active');
+  document.getElementById('panel-crypto').classList.remove('active');
+  this.classList.add('active');
+  document.getElementById('tabCrypto').classList.remove('active');
+});
+
+function selectCoin(i){
+  document.querySelectorAll('.co-coin').forEach(function(r){ r.classList.remove('selected'); });
+  document.querySelectorAll('[id^="co-chk-"]').forEach(function(r){ r.classList.remove('selected'); });
+  var rows = document.querySelectorAll('.co-coin');
+  rows[i].classList.add('selected');
+  selectedCoin = i;
+  var c = COINS[i];
+  var detail = document.getElementById('co-detail');
+  detail.classList.add('show');
+  document.getElementById('co-full-addr').textContent = c.addr;
+  document.getElementById('co-detail-label').textContent = 'Send '+c.symbol+' to:';
+  var copyBtn = document.getElementById('co-copy-btn');
+  copyBtn.onclick = function(){
+    navigator.clipboard.writeText(c.addr).then(function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy address'; }, 1500);
+    });
+  };
+  var qrWrap = document.getElementById('co-qr');
+  qrWrap.innerHTML = '';
+  new QRCode(qrWrap, {text:c.addr, width:90, height:90, colorDark:'#000', colorLight:'#fff', correctLevel:QRCode.CorrectLevel.M});
+}
+
+var gpayClient = null;
+
+var gpayBaseRequest = {
+  apiVersion: 2,
+  apiVersionMinor: 0
+};
+
+var gpayAllowedMethods = [{
+  type: 'CARD',
+  parameters: {
+    allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+    allowedCardNetworks: ['AMEX', 'DISCOVER', 'JCB', 'MASTERCARD', 'VISA']
+  },
+  tokenizationSpecification: {
+    type: 'PAYMENT_GATEWAY',
+    parameters: {
+      gateway: 'example',
+      gatewayMerchantId: 'BCR2DN7TTDNL3AAR'
+    }
+  }
+}];
+
+function onGooglePayLoaded(){
+  gpayClient = new google.payments.api.PaymentsClient({environment: 'TEST'});
+}
+
+document.getElementById('gpay-btn').addEventListener('click', function(){
+  var amt = document.getElementById('gpay-amount').value;
+  if(!amt || amt <= 0){ alert('Please enter a valid amount.'); return; }
+  if(!gpayClient){ alert('Google Pay is loading. Please try again.'); return; }
+
+  var req = Object.assign({}, gpayBaseRequest, {
+    allowedPaymentMethods: gpayAllowedMethods,
+    transactionInfo: {
+      totalPriceStatus: 'FINAL',
+      totalPrice: parseFloat(amt).toFixed(2),
+      currencyCode: 'USD',
+      countryCode: 'US'
+    },
+    merchantInfo: {
+      merchantId: 'BCR2DN7TTDNL3AAR',
+      merchantName: 'Jasem Ahmad Alyounes'
+    }
+  });
+
+  gpayClient.loadPaymentData(req)
+    .then(function(){
+      alert('Payment received! Email jasemalyounes@gmail.com with your order details to confirm.');
+      closeCheckout();
+    })
+    .catch(function(err){
+      if(err.statusCode !== 'CANCELED') alert('Payment error. Please try again or contact me directly.');
+    });
+});
+
+/* ---- DONATE SECTION ---- */
+var clist = document.getElementById('crypto-list');
+var dqrGen = {};
+COINS.forEach(function(c, i){
+  var row = document.createElement('div');
+  row.className = 'reveal';
+  row.style.cssText = 'background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition-delay:'+i*.08+'s;';
+  row.onmouseenter = function(){ row.style.borderColor = c.color; row.style.transform='translateY(-2px)'; };
+  row.onmouseleave = function(){ row.style.borderColor = ''; row.style.transform=''; };
+  row.innerHTML =
+    '<div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;">'+
+    '<div style="width:40px;height:40px;border-radius:50%;background:'+c.color+'18;border:1.5px solid '+c.color+'55;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:10px;font-weight:700;color:'+c.color+';">'+c.symbol+'</span></div>'+
+    '<div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;margin-bottom:3px;color:var(--text);">'+c.name+'</div><div style="font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+c.addr+'</div></div>'+
+    '<button id="dcopy-'+i+'" style="flex-shrink:0;padding:5px 12px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;margin-right:6px;">Copy</button>'+
+    '<button id="dqr-'+i+'" style="flex-shrink:0;padding:5px 12px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;">QR</button>'+
+    '</div>'+
+    '<div id="dqrpanel-'+i+'" style="display:none;padding:1rem 1.2rem;border-top:1px solid var(--border);align-items:center;gap:1.2rem;">'+
+    '<div id="dqrcode-'+i+'" style="background:#fff;padding:8px;border-radius:8px;flex-shrink:0;"></div>'+
+    '<div><div style="font-size:12px;color:var(--text3);margin-bottom:6px;">Scan to send '+c.symbol+'</div><div style="font-size:11px;color:var(--text3);word-break:break-all;line-height:1.6;">'+c.addr+'</div></div>'+
+    '</div>';
+  clist.appendChild(row);
+  obs.observe(row);
+
+  (function(idx, addr){
+    document.getElementById('dcopy-'+idx).addEventListener('click', function(){
+      var btn = this;
+      navigator.clipboard.writeText(addr).then(function(){
+        btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500);
+      });
+    });
+    document.getElementById('dqr-'+idx).addEventListener('click', function(){
+      var btn = this;
+      var panel = document.getElementById('dqrpanel-'+idx);
+      var open = panel.style.display === 'flex';
+      panel.style.display = open ? 'none' : 'flex';
+      btn.textContent = open ? 'QR' : 'Hide';
+      if(!open && !dqrGen[idx]){
+        new QRCode(document.getElementById('dqrcode-'+idx),{text:addr,width:100,height:100,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M});
+        dqrGen[idx]=true;
+      }
+    });
+  })(i, c.addr);
+});
+</script>
+</body>
+</html>
