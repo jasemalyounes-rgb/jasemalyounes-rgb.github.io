@@ -104,6 +104,13 @@ section.inner{max-width:960px;margin:0 auto;padding:4rem 2rem;}
 .project-name{font-size:15px;font-weight:600;}
 .project-desc{font-size:13px;color:var(--text2);line-height:1.6;flex:1;}
 .project-stack{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.2rem;}
+.project-links{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin-top:.5rem;padding-top:.7rem;border-top:1px solid var(--border);}
+.project-link{display:inline-flex;align-items:center;gap:.35rem;font-size:12px;font-weight:500;color:var(--accent);text-decoration:none;transition:gap .18s;}
+.project-link:hover{gap:.55rem;text-decoration:underline;}
+.project-link svg{width:13px;height:13px;flex-shrink:0;}
+.project-private{display:inline-flex;align-items:center;gap:.35rem;font-size:12px;color:var(--text3);}
+.project-private svg{width:12px;height:12px;flex-shrink:0;}
+
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
 .contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.2rem;display:flex;align-items:center;gap:.8rem;transition:border-color .2s,transform .2s;}
 .contact-card:hover{border-color:var(--accent);transform:translateY(-2px);}
@@ -228,6 +235,10 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Get in touch
         </a>
+        <a href="Jasem-Alyounes-CV.pdf" download class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
         <a href="https://github.com/jasemalyounes-rgb" target="_blank" class="btn btn-ghost">GitHub</a>
         <a href="#services" class="btn btn-ghost">Services →</a>
       </div>
@@ -318,18 +329,46 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   <div class="section-label">Projects</div>
   <div class="projects-grid">
     <div class="project-card reveal">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="project-name">Harmonia</div>
+      <div class="project-desc">Family safety and location-sharing app — live tracking, SOS alerts, geofenced places and guardian roles, with an offline SMS fallback. Full stack: Expo/React Native client, Fastify API and a self-hosted PostgreSQL backend.</div>
+      <div class="project-stack"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">TypeScript</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span></div>
+      <div class="project-links"><a class="project-link" href="https://harmonia-safety.vercel.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>harmonia-safety.vercel.app</a></div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.1s">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="14" y2="7"/><line x1="7" y1="12" x2="19" y2="12"/><line x1="4" y1="17" x2="12" y2="17"/></svg></div>
+      <div class="project-name">Smart Task Planner</div>
+      <div class="project-desc">Standalone Odoo 19 project management app published on the Odoo App Store. Interactive Gantt with drag-and-drop rescheduling, dependencies and milestones, a seven-stage kanban, work sessions and timesheets, plus personal and executive dashboards — with no Enterprise dependency.</div>
+      <div class="project-stack"><span class="tag">Odoo 19</span><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">OWL</span><span class="tag">XML</span></div>
+      <div class="project-links"><a class="project-link" href="https://apps.odoo.com/apps/modules/19.0/smart_task_planner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Odoo App Store</a></div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.2s">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1.4"/><circle cx="9" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+      <div class="project-name">Super Proxy Store</div>
+      <div class="project-desc">Telegram bot for selling datacenter and residential proxy access. Wallet top-ups via Cryptomus for crypto, plus a manual confirmation flow for OMT, Whish and Syriatel Cash — the Lebanon/Syria payment rails that have no public API. Pluggable supplier adapters behind one provisioning interface.</div>
+      <div class="project-stack"><span class="tag">Telegraf</span><span class="tag">Node.js</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span><span class="tag">Cryptomus</span></div>
+      <div class="project-links"><a class="project-link" href="https://t.me/myproxystore_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>@myproxystore_bot</a></div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.3s">
+      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="12" rx="4"/><line x1="7" y1="11" x2="7" y2="15"/><line x1="5" y1="13" x2="9" y2="13"/><circle cx="16" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="18.5" cy="15" r="1.1" fill="currentColor" stroke="none"/></svg></div>
+      <div class="project-name">Legends Match</div>
+      <div class="project-desc">Mobile memory match game — pair world legends from their young and old photos. Google Sign-In, AdMob monetization, an in-game coin economy with hints, and a referral and cashout system backed by an admin dashboard.</div>
+      <div class="project-stack"><span class="tag">Expo</span><span class="tag">React Native</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span><span class="tag">AdMob</span></div>
+      <div class="project-links"><span class="project-private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Private repo</span></div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:.4s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
       <div class="project-name">Odoo 19 R&D Task Manager</div>
       <div class="project-desc">Custom ERP module for R&D project tracking with manager delegation and XML workflows.</div>
       <div class="project-stack"><span class="tag">Odoo 19</span><span class="tag">Python</span><span class="tag">PostgreSQL</span></div>
     </div>
-    <div class="project-card reveal" style="transition-delay:.1s">
+    <div class="project-card reveal" style="transition-delay:.5s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
       <div class="project-name">Oracle–Web Bridge</div>
       <div class="project-desc">Enterprise integration layer connecting Oracle databases with modern web architectures.</div>
       <div class="project-stack"><span class="tag">Oracle</span><span class="tag">Python</span><span class="tag">REST API</span></div>
     </div>
-    <div class="project-card reveal" style="transition-delay:.2s">
+    <div class="project-card reveal" style="transition-delay:.6s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
       <div class="project-name">Multi-Dept Project Platform</div>
       <div class="project-desc">Full-stack project management system for cross-functional coordination and reporting.</div>
