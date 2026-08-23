@@ -1,12 +1,11 @@
 param([string]$Lang='ar')
 $ErrorActionPreference='Stop'
-$base='c:\Users\jj\Desktop\web dev\potfolio\_cv5'
+$base='c:\Users\jj\Desktop\web dev\potfolio\_bld'
 $src="$base\$Lang"
 $out="$base\$Lang.docx"
-$html="$base\$Lang.html"
 $pdf="$base\$Lang.pdf"
 
-foreach ($f in @($out,$html,$pdf)) { if (Test-Path $f) { Remove-Item $f -Force } }
+foreach ($f in @($out,$pdf)) { if (Test-Path $f) { Remove-Item $f -Force } }
 
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -20,29 +19,17 @@ try {
   }
 } finally { $zip.Dispose() }
 
+# Export READ-ONLY. Letting Word save strips the paragraph-level <w:bidi/> and
+# silently turns the Arabic document left-to-right; the XML we just wrote
+# already carries the direction, so nothing needs to be set through COM.
 $w=New-Object -ComObject Word.Application
 $w.Visible=$false; $w.DisplayAlerts=0
 $w.Options.CheckGrammarAsYouType=$false
 $w.Options.CheckSpellingAsYouType=$false
 try {
-  $d=$w.Documents.Open($out,$false,$false,$false)
-  if ($Lang -eq 'ar') {
-    $d.Content.ParagraphFormat.ReadingOrder=1     # wdReadingOrderRtl
-    $d.Content.ParagraphFormat.Alignment=2        # right
-  } else {
-    $d.Content.ParagraphFormat.ReadingOrder=0     # wdReadingOrderLtr
-    $d.Content.ParagraphFormat.Alignment=0        # left
-  }
-  # header block (name / role / contact) stays centered in both languages
-  for ($i=1; $i -le 3; $i++) { $d.Paragraphs($i).Format.Alignment=1 }
-  $d.Save()
-
-  $rtl=0
-  foreach ($p in $d.Paragraphs) { if ($p.Format.ReadingOrder -eq 1) { $rtl++ } }
-  $pages=$d.ComputeStatistics(2)
+  $d=$w.Documents.Open($out,$false,$true)
   $links=$d.Hyperlinks.Count
-  $d.SaveAs([ref]$html,[ref]10)
   $d.SaveAs([ref]$pdf,[ref]17)
   $d.Close($false)
-  Write-Output ("[$Lang] pages=$pages links=$links rtlParas=$rtl/" + $(if($Lang -eq 'ar'){'all'}else{'0 expected'}) + " pdf=" + (Get-Item $pdf).Length)
+  Write-Output ("[$Lang] links=$links pdf=" + (Get-Item $pdf).Length)
 } finally { $w.Quit() }
