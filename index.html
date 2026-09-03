@@ -199,13 +199,6 @@ html[dir="rtl"] .cursor{margin-left:0;margin-right:2px;}
 [data-theme="dark"] #gpay-btn{background:#fff;color:#000;}
 .pay-note{font-size:12px;color:var(--text3);text-align:center;margin-top:1rem;}
 /* SUPPORT */
-.donate-section{max-width:600px;margin:0 auto;}
-.donate-intro{font-size:15px;color:var(--text2);margin-bottom:1.5rem;text-align:center;}
-#crypto-list{display:flex;flex-direction:column;gap:.8rem;}
-.support-gpay-wrap{border-top:1px solid var(--border);padding-top:1.2rem;margin-top:1.2rem;}
-#support-gpay-btn{width:100%;max-width:340px;display:flex;align-items:center;justify-content:center;gap:.6rem;padding:13px;border-radius:10px;background:#000;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .18s;margin:0 auto;}
-#support-gpay-btn:hover{opacity:.85;}
-[data-theme="dark"] #support-gpay-btn{background:#fff;color:#000;}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -227,7 +220,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
     <div class="nav-right">
       <div class="nav-links">
         <a href="#about" data-i18n="nav.about">About</a><a href="#skills" data-i18n="nav.skills">Skills</a><a href="#experience" data-i18n="nav.experience">Experience</a>
-        <a href="#projects" data-i18n="nav.projects">Projects</a><a href="#services" data-i18n="nav.services">Services</a><a href="#contact" data-i18n="nav.contact">Contact</a><a href="#support" data-i18n="nav.donate">Donate</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a><a href="#services" data-i18n="nav.services">Services</a><a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
       <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">العربية</button>
       <button class="theme-btn" id="themeToggle">
@@ -422,24 +415,6 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
     </div>
   </div>
 </section>
-<div class="divider"></div>
-
-<section class="inner" id="support">
-  <div class="section-label" data-i18n="sec.donate">Donate</div>
-  <div class="donate-section">
-    <p class="donate-intro reveal" data-i18n="donate.intro">If you found my work helpful, consider supporting via crypto or Google Pay — every bit is appreciated!</p>
-    <div id="crypto-list"></div>
-    <div class="support-gpay-wrap reveal">
-      <p style="text-align:center;font-size:13px;color:var(--text3);margin:1.2rem 0 .8rem;" data-i18n="donate.gpay">Or pay directly with Google Pay:</p>
-      <div class="amt-row" style="max-width:340px;margin:0 auto .8rem;">
-        <input type="number" id="support-gpay-amount" placeholder="Enter amount (USD)" min="1"/>
-        <span>USD</span>
-      </div>
-      <button id="support-gpay-btn">G&nbsp; Pay with Google Pay</button>
-      <p class="pay-note" style="margin-top:.6rem;" data-i18n="donate.note">Requires a merchant account. <a href="mailto:jasemalyounes@gmail.com" style="color:var(--accent);" data-i18n="donate.contactme">Contact me</a><span data-i18n="donate.note2"> to arrange payment.</span></p>
-    </div>
-  </div>
-</section>
 
 <footer><p>© 2026 Jasem Ahmad Alyounes · <a href="https://github.com/jasemalyounes-rgb" target="_blank" style="color:var(--accent);">github.com/jasemalyounes-rgb</a></p></footer>
 
@@ -479,7 +454,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
         <span>USD</span>
       </div>
       <button id="gpay-btn">G&nbsp; Pay with Google Pay</button>
-      <p class="pay-note"><span data-i18n="donate.note">Requires a merchant account. </span><a href="mailto:jasemalyounes@gmail.com" style="color:var(--accent);" data-i18n="donate.contactme">Contact me</a><span data-i18n="donate.note2"> to arrange payment.</span></p>
+      <p class="pay-note"><span data-i18n="pay.note">Requires a merchant account. </span><a href="mailto:jasemalyounes@gmail.com" style="color:var(--accent);" data-i18n="pay.contactme">Contact me</a><span data-i18n="pay.note2"> to arrange payment.</span></p>
     </div>
   </div>
 </div>
@@ -526,7 +501,7 @@ const SERVICES = [
 ];
 
 /* ---- I18N ---- */
-var I18N = {"nav.about":"نبذة","nav.skills":"المهارات","nav.experience":"الخبرات","nav.projects":"المشاريع","nav.services":"الخدمات","nav.contact":"تواصل","nav.donate":"ادعمني","hero.available":"متاح للفرص الجديدة","hero.cta":"تواصل معي","hero.cv":"تحميل السيرة الذاتية","hero.services":"الخدمات ←","meta.location":"بيروت، لبنان","meta.exp":"خبرة +5 سنوات","sec.about":"نبذة عني","sec.skills":"المهارات التقنية","sec.experience":"الخبرات العملية","sec.projects":"المشاريع","sec.services":"الخدمات والأسعار","sec.contact":"تواصل معي","sec.donate":"ادعمني","about.p1":"مهندس برمجيات أول حاصل على ماجستير في علوم الويب وبكالوريوس في هندسة البرمجيات، مع أكثر من خمس سنوات من الخبرة في بناء تطبيقات متكاملة قابلة للتوسّع.","about.p2":"خبير في Odoo 19 وPython، وربط بيانات المؤسسات المعقّدة (Oracle) بمعماريات الويب الحديثة. حاصل على شهادة CCNA، ويتقن العربية والإنجليزية.","stat.years":"سنوات الخبرة","stat.msc":"علوم الويب — الجامعة الافتراضية","stat.bsc":"هندسة البرمجيات","stat.ccna":"معتمد","skill.languages":"لغات البرمجة","skill.frameworks":"أطر العمل","skill.databases":"قواعد البيانات","skill.apis":"الواجهات والأدوات","skill.pm":"إدارة المشاريع","skill.net":"الشبكات","tag.coordination":"التنسيق","tag.reporting":"إعداد التقارير","tag.riskid":"تحديد المخاطر","tag.itinfra":"البنية التحتية","tag.xmlviews":"واجهات XML","exp1.title":"مطوّر أنظمة ERP مستقل","exp1.period":"2024 – حتى الآن","exp1.company":"مشاريع خاصة","exp1.b1":"تصميم وبناء حل مخصّص لإدارة المهام على Odoo 19 لتتبّع أعمال البحث والتطوير.","exp1.b2":"تصميم واجهات XML موروثة معقّدة وإجراءات مخصّصة لعروض القوائم.","exp1.b3":"بناء منطق خلفي قابل للتوسّع باستخدام Python وPostgreSQL.","exp2.title":"مطوّر برمجيات أول / قائد فريق تقني","exp2.period":"2019 – 2024","exp2.company":"شركة LAZER NET، دمشق، سوريا","exp2.b1":"إدارة دورة حياة المشاريع كاملةً من تحليل المتطلبات حتى النشر.","exp2.b2":"تصميم وصيانة قواعد بيانات علائقية معقّدة.","exp2.b3":"تنسيق الفرق متعدّدة التخصّصات ووضع استراتيجيات تقييم المخاطر.","proj.harmonia.desc":"تطبيق لسلامة العائلة ومشاركة الموقع — تتبّع مباشر، وتنبيهات استغاثة، ومناطق جغرافية، وأدوار للأوصياء، مع بديل يعمل عبر الرسائل القصيرة دون إنترنت. حزمة متكاملة: تطبيق Expo/React Native وواجهة Fastify وخادم PostgreSQL مُدار ذاتيًا.","proj.stp.desc":"تطبيق مستقل لإدارة المشاريع على Odoo 19 منشور على متجر تطبيقات Odoo. مخطط Gantt تفاعلي مع إعادة جدولة بالسحب والإفلات والاعتماديات والمعالم، ولوحة كانبان بسبع مراحل، وجلسات عمل وجداول زمنية، ولوحات تحكّم شخصية وتنفيذية — دون الاعتماد على النسخة المؤسسية.","proj.bot.desc":"بوت تيليجرام لبيع خدمات البروكسي من مراكز البيانات والبروكسي السكني. شحن المحفظة بالعملات الرقمية عبر Cryptomus، إضافةً إلى مسار تأكيد يدوي لخدمات OMT وWhish وسيريتل كاش — قنوات الدفع في لبنان وسوريا التي لا تملك واجهات برمجية عامة. مُهيّئات موردين قابلة للتبديل خلف واجهة تزويد واحدة.","proj.legends.desc":"لعبة ذاكرة للهواتف المحمولة — طابِق بين صور المشاهير في شبابهم وكبرهم. تسجيل دخول عبر Google، وتحقيق دخل بواسطة AdMob، واقتصاد عملات داخل اللعبة مع تلميحات، ونظام إحالة وصرف مدعوم بلوحة تحكّم إدارية.","proj.private":"مستودع خاص","proj.odoo.name":"مدير مهام البحث والتطوير على Odoo 19","proj.odoo.desc":"وحدة ERP مخصّصة لتتبّع مشاريع البحث والتطوير مع تفويض المدراء وسير عمل XML.","proj.oracle.name":"جسر Oracle والويب","proj.oracle.desc":"طبقة تكامل مؤسسية تربط قواعد بيانات Oracle بمعماريات الويب الحديثة.","proj.multi.name":"منصّة مشاريع متعدّدة الأقسام","proj.multi.desc":"نظام متكامل لإدارة المشاريع يدعم التنسيق بين الأقسام وإعداد التقارير.","services.intro":"اختر الخدمة ثم الباقة المناسبة. كل المشاريع تبدأ باستشارة مجانية.","contact.email":"البريد الإلكتروني","contact.phone":"الهاتف","contact.github":"جيت‌هاب","contact.location":"الموقع","donate.intro":"إذا وجدت عملي مفيدًا، فكّر في دعمي عبر العملات الرقمية أو Google Pay — كل مساهمة محل تقدير!","donate.gpay":"أو ادفع مباشرةً عبر Google Pay:","donate.note":"يتطلّب حساب تاجر. ","donate.contactme":"تواصل معي","donate.note2":" لترتيب الدفع.","rt.getStarted":"ابدأ الآن","rt.mostPopular":"الأكثر طلبًا","rt.copy":"نسخ","rt.copied":"تم النسخ!","rt.qr":"رمز QR","rt.hide":"إخفاء","rt.copyAddress":"نسخ العنوان","rt.copiedAddress":"تم النسخ!","rt.scanToSend":"امسح لإرسال ","rt.sendTo":"أرسل ","rt.sendToSuffix":" إلى:","rt.amountPlaceholder":"أدخل المبلغ (دولار)","rt.enterValid":"يرجى إدخال مبلغ صحيح.","rt.gpayLoading":"جارٍ تحميل Google Pay. حاول مرة أخرى.","rt.paymentError":"حدث خطأ في الدفع. حاول مجددًا أو تواصل معي مباشرةً.","rt.paidService":"تم استلام الدفعة! راسلني على jasemalyounes@gmail.com بتفاصيل طلبك للتأكيد.","rt.paidDonate":"تم استلام الدفعة! شكرًا لدعمك!","rt.completeOrder":"أكمل طلبك","rt.service":"الخدمة:","rt.price":"السعر:","rt.crypto":"₿ العملات الرقمية","rt.gpay":"Google Pay","rt.payWithGpay":"ادفع عبر Google Pay","rt.usd":"دولار"};
+var I18N = {"nav.about":"نبذة","nav.skills":"المهارات","nav.experience":"الخبرات","nav.projects":"المشاريع","nav.services":"الخدمات","nav.contact":"تواصل","hero.available":"متاح للفرص الجديدة","hero.cta":"تواصل معي","hero.cv":"تحميل السيرة الذاتية","hero.services":"الخدمات ←","meta.location":"بيروت، لبنان","meta.exp":"خبرة +5 سنوات","sec.about":"نبذة عني","sec.skills":"المهارات التقنية","sec.experience":"الخبرات العملية","sec.projects":"المشاريع","sec.services":"الخدمات والأسعار","sec.contact":"تواصل معي","about.p1":"مهندس برمجيات أول حاصل على ماجستير في علوم الويب وبكالوريوس في هندسة البرمجيات، مع أكثر من خمس سنوات من الخبرة في بناء تطبيقات متكاملة قابلة للتوسّع.","about.p2":"خبير في Odoo 19 وPython، وربط بيانات المؤسسات المعقّدة (Oracle) بمعماريات الويب الحديثة. حاصل على شهادة CCNA، ويتقن العربية والإنجليزية.","stat.years":"سنوات الخبرة","stat.msc":"علوم الويب — الجامعة الافتراضية","stat.bsc":"هندسة البرمجيات","stat.ccna":"معتمد","skill.languages":"لغات البرمجة","skill.frameworks":"أطر العمل","skill.databases":"قواعد البيانات","skill.apis":"الواجهات والأدوات","skill.pm":"إدارة المشاريع","skill.net":"الشبكات","tag.coordination":"التنسيق","tag.reporting":"إعداد التقارير","tag.riskid":"تحديد المخاطر","tag.itinfra":"البنية التحتية","tag.xmlviews":"واجهات XML","exp1.title":"مطوّر أنظمة ERP مستقل","exp1.period":"2024 – حتى الآن","exp1.company":"مشاريع خاصة","exp1.b1":"تصميم وبناء حل مخصّص لإدارة المهام على Odoo 19 لتتبّع أعمال البحث والتطوير.","exp1.b2":"تصميم واجهات XML موروثة معقّدة وإجراءات مخصّصة لعروض القوائم.","exp1.b3":"بناء منطق خلفي قابل للتوسّع باستخدام Python وPostgreSQL.","exp2.title":"مطوّر برمجيات أول / قائد فريق تقني","exp2.period":"2019 – 2024","exp2.company":"شركة LAZER NET، دمشق، سوريا","exp2.b1":"إدارة دورة حياة المشاريع كاملةً من تحليل المتطلبات حتى النشر.","exp2.b2":"تصميم وصيانة قواعد بيانات علائقية معقّدة.","exp2.b3":"تنسيق الفرق متعدّدة التخصّصات ووضع استراتيجيات تقييم المخاطر.","proj.harmonia.desc":"تطبيق لسلامة العائلة ومشاركة الموقع — تتبّع مباشر، وتنبيهات استغاثة، ومناطق جغرافية، وأدوار للأوصياء، مع بديل يعمل عبر الرسائل القصيرة دون إنترنت. حزمة متكاملة: تطبيق Expo/React Native وواجهة Fastify وخادم PostgreSQL مُدار ذاتيًا.","proj.stp.desc":"تطبيق مستقل لإدارة المشاريع على Odoo 19 منشور على متجر تطبيقات Odoo. مخطط Gantt تفاعلي مع إعادة جدولة بالسحب والإفلات والاعتماديات والمعالم، ولوحة كانبان بسبع مراحل، وجلسات عمل وجداول زمنية، ولوحات تحكّم شخصية وتنفيذية — دون الاعتماد على النسخة المؤسسية.","proj.bot.desc":"بوت تيليجرام لبيع خدمات البروكسي من مراكز البيانات والبروكسي السكني. شحن المحفظة بالعملات الرقمية عبر Cryptomus، إضافةً إلى مسار تأكيد يدوي لخدمات OMT وWhish وسيريتل كاش — قنوات الدفع في لبنان وسوريا التي لا تملك واجهات برمجية عامة. مُهيّئات موردين قابلة للتبديل خلف واجهة تزويد واحدة.","proj.legends.desc":"لعبة ذاكرة للهواتف المحمولة — طابِق بين صور المشاهير في شبابهم وكبرهم. تسجيل دخول عبر Google، وتحقيق دخل بواسطة AdMob، واقتصاد عملات داخل اللعبة مع تلميحات، ونظام إحالة وصرف مدعوم بلوحة تحكّم إدارية.","proj.private":"مستودع خاص","proj.odoo.name":"مدير مهام البحث والتطوير على Odoo 19","proj.odoo.desc":"وحدة ERP مخصّصة لتتبّع مشاريع البحث والتطوير مع تفويض المدراء وسير عمل XML.","proj.oracle.name":"جسر Oracle والويب","proj.oracle.desc":"طبقة تكامل مؤسسية تربط قواعد بيانات Oracle بمعماريات الويب الحديثة.","proj.multi.name":"منصّة مشاريع متعدّدة الأقسام","proj.multi.desc":"نظام متكامل لإدارة المشاريع يدعم التنسيق بين الأقسام وإعداد التقارير.","services.intro":"اختر الخدمة ثم الباقة المناسبة. كل المشاريع تبدأ باستشارة مجانية.","contact.email":"البريد الإلكتروني","contact.phone":"الهاتف","contact.github":"جيت‌هاب","contact.location":"الموقع","pay.note":"يتطلّب حساب تاجر. ","pay.contactme":"تواصل معي","pay.note2":" لترتيب الدفع.","rt.getStarted":"ابدأ الآن","rt.mostPopular":"الأكثر طلبًا","rt.copy":"نسخ","rt.copied":"تم النسخ!","rt.qr":"رمز QR","rt.hide":"إخفاء","rt.copyAddress":"نسخ العنوان","rt.copiedAddress":"تم النسخ!","rt.scanToSend":"امسح لإرسال ","rt.sendTo":"أرسل ","rt.sendToSuffix":" إلى:","rt.amountPlaceholder":"أدخل المبلغ (دولار)","rt.enterValid":"يرجى إدخال مبلغ صحيح.","rt.gpayLoading":"جارٍ تحميل Google Pay. حاول مرة أخرى.","rt.paymentError":"حدث خطأ في الدفع. حاول مجددًا أو تواصل معي مباشرةً.","rt.paidService":"تم استلام الدفعة! راسلني على jasemalyounes@gmail.com بتفاصيل طلبك للتأكيد.","rt.completeOrder":"أكمل طلبك","rt.service":"الخدمة:","rt.price":"السعر:","rt.crypto":"₿ العملات الرقمية","rt.gpay":"Google Pay","rt.payWithGpay":"ادفع عبر Google Pay","rt.usd":"دولار"};
 var EN = {};
 var curLang = "en";
 // snapshot the English text once, so switching back is lossless
@@ -539,7 +514,6 @@ var EN_RT = {
   "rt.gpayLoading":"Google Pay is loading. Please try again.",
   "rt.paymentError":"Payment error. Please try again or contact me directly.",
   "rt.paidService":"Payment received! Email jasemalyounes@gmail.com with your order details to confirm.",
-  "rt.paidDonate":"Payment received! Thank you for your support!",
   "rt.completeOrder":"Complete your order","rt.service":"Service:","rt.price":"Price:",
   "rt.crypto":"\u20BF Crypto","rt.gpay":"G Pay","rt.payWithGpay":"Pay with Google Pay","rt.usd":"USD"
 };
@@ -556,11 +530,11 @@ function applyLang(lang){
     else  { if(EN[k]!==undefined)   el.innerHTML = EN[k];   }
   });
   // amount inputs
-  ["support-gpay-amount","co-amount","gpay-amount"].forEach(function(id){
+  ["co-amount","gpay-amount"].forEach(function(id){
     var el=document.getElementById(id); if(el) el.placeholder = tr("rt.amountPlaceholder");
   });
   // Google Pay buttons keep the G glyph
-  ["support-gpay-btn","gpay-btn"].forEach(function(id){
+  ["gpay-btn"].forEach(function(id){
     var el=document.getElementById(id); if(el) el.innerHTML = "G&nbsp; " + tr("rt.payWithGpay");
   });
   // modal chrome
@@ -581,7 +555,6 @@ function applyLang(lang){
   if(cvA) cvA.setAttribute("href", ar ? "Jasem-Alyounes-CV-AR.pdf" : "Jasem-Alyounes-CV.pdf");
   // re-render the dynamic sections in the new language
   if(typeof renderServices === "function") renderServices();
-  if(typeof renderDonate  === "function") renderDonate();
   if(typeof observeReveals === "function") observeReveals();
   document.title = ar
     ? "جاسم اليونس | مطوّر Odoo ومهندس برمجيات"
@@ -659,7 +632,7 @@ type();
 var obs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:.1});
-// Re-scan on demand: renderServices()/renderDonate() replace nodes, and any
+// Re-scan on demand: renderServices() replaces nodes, and any
 // element created after the initial pass would otherwise stay at opacity:0.
 function observeReveals(){
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){ obs.observe(el); });
@@ -880,86 +853,7 @@ document.getElementById('gpay-btn').addEventListener('click', function(){
     });
 });
 
-document.getElementById('support-gpay-btn').addEventListener('click', function(){
-  var amt = document.getElementById('support-gpay-amount').value;
-  if(!amt || amt <= 0){ alert(tr('rt.enterValid')); return; }
-  if(!gpayClient){ alert(tr('rt.gpayLoading')); return; }
 
-  var req = Object.assign({}, gpayBaseRequest, {
-    allowedPaymentMethods: gpayAllowedMethods,
-    transactionInfo: {
-      totalPriceStatus: 'FINAL',
-      totalPrice: parseFloat(amt).toFixed(2),
-      currencyCode: 'USD',
-      countryCode: 'US'
-    },
-    merchantInfo: {
-      merchantId: 'BCR2DN7TTDNL3AAR',
-      merchantName: 'Jasem Ahmad Alyounes'
-    }
-  });
-
-  gpayClient.loadPaymentData(req)
-    .then(function(){
-      alert(tr('rt.paidDonate'));
-      document.getElementById('support-gpay-amount').value = '';
-    })
-    .catch(function(err){
-      if(err.statusCode !== 'CANCELED') alert(tr('rt.paymentError'));
-    });
-});
-
-/* ---- SUPPORT SECTION ---- */
-var clist = document.getElementById('crypto-list');
-var dqrGen = {};
-// Re-callable so a language switch can rebuild the crypto rows.
-function renderDonate(){
-clist.innerHTML = ''; dqrGen = {};
-COINS.forEach(function(c, i){
-  var row = document.createElement('div');
-  row.className = 'reveal';
-  row.style.cssText = 'background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition-delay:'+i*.08+'s;';
-  row.onmouseenter = function(){ row.style.borderColor = c.color; row.style.transform='translateY(-2px)'; };
-  row.onmouseleave = function(){ row.style.borderColor = ''; row.style.transform=''; };
-  row.innerHTML =
-    '<div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;">'+
-    '<div style="width:40px;height:40px;border-radius:50%;background:'+c.color+'18;border:1.5px solid '+c.color+'55;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:10px;font-weight:700;color:'+c.color+';">'+c.symbol+'</span></div>'+
-    '<div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;margin-bottom:3px;color:var(--text);">'+c.name+'</div><div style="font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+c.addr+'</div></div>'+
-    '<button id="dcopy-'+i+'" style="flex-shrink:0;padding:5px 12px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;margin-inline-end:6px;">'+tr('rt.copy')+'</button>'+
-    '<button id="dqr-'+i+'" style="flex-shrink:0;padding:5px 12px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;">'+tr('rt.qr')+'</button>'+
-    '</div>'+
-    '<div id="dqrpanel-'+i+'" style="display:none;padding:1rem 1.2rem;border-top:1px solid var(--border);align-items:center;gap:1.2rem;">'+
-    '<div id="dqrcode-'+i+'" style="background:#fff;padding:8px;border-radius:8px;flex-shrink:0;"></div>'+
-    '<div><div style="font-size:12px;color:var(--text3);margin-bottom:6px;">'+tr('rt.scanToSend')+c.symbol+'</div><div style="font-size:11px;color:var(--text3);word-break:break-all;line-height:1.6;">'+c.addr+'</div></div>'+
-    '</div>';
-  clist.appendChild(row);
-  obs.observe(row);
-
-  // Scope these lookups to `row`: the buttons are built via innerHTML on this
-  // element, so a global getElementById returns null and throws, which used to
-  // abort the rest of the script.
-  (function(idx, addr){
-    row.querySelector('#dcopy-'+idx).addEventListener('click', function(){
-      var btn = this;
-      navigator.clipboard.writeText(addr).then(function(){
-        btn.textContent=tr('rt.copied'); setTimeout(function(){ btn.textContent=tr('rt.copy'); },1500);
-      });
-    });
-    row.querySelector('#dqr-'+idx).addEventListener('click', function(){
-      var btn = this;
-      var panel = row.querySelector('#dqrpanel-'+idx);
-      var open = panel.style.display === 'flex';
-      panel.style.display = open ? 'none' : 'flex';
-      btn.textContent = open ? tr('rt.qr') : tr('rt.hide');
-      if(!open && !dqrGen[idx]){
-        new QRCode(row.querySelector('#dqrcode-'+idx),{text:addr,width:100,height:100,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M});
-        dqrGen[idx]=true;
-      }
-    });
-  })(i, c.addr);
-});
-}
-renderDonate();
 
 // restore saved language (must run after the builders are defined)
 // ?lang=ar (or #ar) wins over the saved preference, so an Arabic link is shareable
