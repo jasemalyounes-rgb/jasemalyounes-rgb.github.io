@@ -21,8 +21,6 @@
 <meta name="twitter:title" content="Jasem Alyounes | Senior Software Engineer & Odoo ERP Specialist"/>
 <meta name="twitter:description" content="Senior software engineer with 14+ years of experience. Odoo ERP specialist (v12–v19), custom modules, migrations and integrations. Based in Beirut, Lebanon."/>
 <meta name="twitter:image" content="https://jasemalyounes-rgb.github.io/logo.png"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 [data-theme="light"]{--bg:#fff;--bg2:#f7f7f5;--bg3:#efefeb;--text:#1a1a1a;--text2:#555;--text3:#999;--border:#e2e2da;--accent:#2563eb;--accent2:#1d4ed8;--avatar-ring:rgba(37,99,235,.2);}
@@ -123,9 +121,8 @@ html[dir="rtl"] .hero-content,html[dir="rtl"] .about-grid{direction:rtl;}
 html[dir="rtl"] .exp-list{padding-left:0;padding-right:1.1rem;border-left:none;border-right:1px solid var(--border);}
 html[dir="rtl"] .exp-dot{left:auto;right:-1.6rem;}
 html[dir="rtl"] .exp-bullets{padding-left:0;padding-right:1.1rem;}
-html[dir="rtl"] .tier-features{padding-left:0;padding-right:0;}
-html[dir="rtl"] .hero-title,html[dir="rtl"] .hero-sub{text-align:right;}
-html[dir="rtl"] .tag,html[dir="rtl"] .co-addr,html[dir="rtl"] .co-full-addr,html[dir="rtl"] .project-link,html[dir="rtl"] .contact-value,html[dir="rtl"] .tier-price,html[dir="rtl"] .stat-num{direction:ltr;unicode-bidi:embed;}
+html[dir="rtl"] html[dir="rtl"] .hero-title,html[dir="rtl"] .hero-sub{text-align:right;}
+html[dir="rtl"] .tag,html[dir="rtl"] .project-link,html[dir="rtl"] .contact-value,html[dir="rtl"] .stat-num{direction:ltr;unicode-bidi:embed;}
 html[dir="rtl"] .skill-tags,html[dir="rtl"] .project-stack{direction:ltr;justify-content:flex-end;}
 html[dir="rtl"] .cursor{margin-left:0;margin-right:2px;}
 
@@ -138,71 +135,13 @@ html[dir="rtl"] .cursor{margin-left:0;margin-right:2px;}
 .contact-label{font-size:11px;color:var(--text3);}
 .contact-value{font-size:13px;font-weight:500;}
 /* SERVICES */
-.svc-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
-.svc-tab{padding:7px 16px;border-radius:99px;font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .18s;}
-.svc-tab.active,.svc-tab:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
-.svc-service{display:none;}
-.svc-service.active{display:block;}
-.svc-header{margin-bottom:1.5rem;}
-.svc-header h3{font-size:1.2rem;font-weight:600;margin-bottom:.3rem;}
-.svc-header p{font-size:14px;color:var(--text2);}
-.tiers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
-.tier-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;position:relative;transition:border-color .2s,transform .2s;}
-.tier-card:hover{transform:translateY(-3px);}
-.tier-card.popular{border-color:var(--accent);}
-.tier-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--accent);color:#fff;padding:3px 14px;border-radius:0 0 8px 8px;}
-.tier-name{font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:.4rem;}
-.tier-price{font-size:2rem;font-weight:700;color:var(--text);letter-spacing:-1.5px;line-height:1;}
-.tier-price span{font-size:13px;font-weight:400;color:var(--text3);letter-spacing:0;}
-.tier-desc{font-size:13px;color:var(--text2);line-height:1.5;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
 .tier-features{list-style:none;display:flex;flex-direction:column;gap:.4rem;flex:1;margin-top:.2rem;}
-.tier-features li{font-size:13px;color:var(--text2);display:flex;align-items:flex-start;gap:.5rem;}
-.tier-features li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;}
-.tier-features li.no::before{content:'✕';color:var(--text3);}
-.tier-features li.no{color:var(--text3);}
-.tier-btn{margin-top:1rem;padding:9px 0;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;text-align:center;border:1px solid var(--accent);color:var(--accent);background:transparent;transition:background .18s,color .18s;width:100%;}
-.tier-btn:hover,.tier-card.popular .tier-btn{background:var(--accent);color:#fff;}
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s;}
-.modal-overlay.open{opacity:1;pointer-events:all;}
-.modal{background:var(--bg);border:1px solid var(--border);border-radius:18px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:2rem;position:relative;transform:translateY(16px);transition:transform .25s;}
-.modal-overlay.open .modal{transform:translateY(0);}
-.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);font-size:18px;}
-.modal-close:hover{border-color:var(--accent);color:var(--accent);}
-.modal-title{font-size:1.1rem;font-weight:700;margin-bottom:.3rem;}
-.modal-sub{font-size:13px;color:var(--text2);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
-.modal-sub strong{color:var(--accent);}
-.pay-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;}
-.pay-tab{flex:1;padding:9px;border-radius:9px;font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;text-align:center;transition:all .18s;}
-.pay-tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-.pay-panel{display:none;}
-.pay-panel.active{display:block;}
-.co-coin{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border-radius:10px;border:1.5px solid var(--border);cursor:pointer;transition:border-color .18s;margin-bottom:.6rem;}
-.co-coin.selected{border-color:var(--accent);background:rgba(37,99,235,.05);}
-.co-sym{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
-.co-info{flex:1;min-width:0;}
-.co-name{font-size:13px;font-weight:600;}
-.co-addr{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.co-check{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;}
-.co-coin.selected .co-check{background:var(--accent);border-color:var(--accent);}
-.co-coin.selected .co-check::after{content:'✓';font-size:10px;color:#fff;}
-.co-detail{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-top:.8rem;display:none;}
-.co-detail.show{display:block;}
 .co-qr-wrap{display:flex;gap:1rem;align-items:flex-start;}
 .co-qr-wrap>div:first-child{background:#fff;padding:8px;border-radius:8px;flex-shrink:0;}
-.co-full-addr{font-size:12px;color:var(--text2);word-break:break-all;line-height:1.7;margin-bottom:.8rem;}
-.copy-btn{width:100%;padding:9px;border-radius:8px;border:1px solid var(--accent);color:var(--accent);background:transparent;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;}
-.copy-btn:hover{background:var(--accent);color:#fff;}
-.amt-row{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
-.amt-row input{flex:1;padding:9px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:14px;outline:none;}
 .amt-row input:focus{border-color:var(--accent);}
-.amt-row span{font-size:13px;color:var(--text3);}
 .gpay-info{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7;}
 .gpay-info strong{color:var(--text);}
-#gpay-btn{width:100%;padding:13px;border-radius:10px;background:#000;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;transition:opacity .18s;}
-#gpay-btn:hover{opacity:.85;}
-[data-theme="dark"] #gpay-btn{background:#fff;color:#000;}
-.pay-note{font-size:12px;color:var(--text3);text-align:center;margin-top:1rem;}
 /* SUPPORT */
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
@@ -225,7 +164,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
     <div class="nav-right">
       <div class="nav-links">
         <a href="#about" data-i18n="nav.about">About</a><a href="#skills" data-i18n="nav.skills">Skills</a><a href="#experience" data-i18n="nav.experience">Experience</a>
-        <a href="#projects" data-i18n="nav.projects">Projects</a><a href="#services" data-i18n="nav.services">Services</a><a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a><a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
       <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">العربية</button>
       <button class="theme-btn" id="themeToggle">
@@ -258,7 +197,6 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
           <span data-i18n="hero.cv">Download CV</span>
         </a>
         <a href="https://github.com/jasemalyounes-rgb" target="_blank" class="btn btn-ghost">GitHub</a>
-        <a href="#services" class="btn btn-ghost" data-i18n="hero.services">Services →</a>
       </div>
       <div class="meta-row">
         <span class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Beirut, Lebanon</span>
@@ -413,14 +351,6 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 </section>
 <div class="divider"></div>
 
-<section class="inner" id="services">
-  <div class="section-label" data-i18n="sec.services">Services & pricing</div>
-  <p class="reveal" style="color:var(--text2);font-size:15px;margin-bottom:1.5rem;" data-i18n="services.intro">Choose a service and pick the tier that fits. All projects start with a free consultation.</p>
-  <div class="svc-tabs" id="svcTabs"></div>
-  <div id="svcServices"></div>
-</section>
-<div class="divider"></div>
-
 <section class="inner" id="contact">
   <div class="section-label" data-i18n="sec.contact">Get in touch</div>
   <div class="contact-grid">
@@ -443,107 +373,16 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   </div>
 </section>
 
-<footer><p>© 2026 Jasem Ahmad Alyounes · <a href="https://github.com/jasemalyounes-rgb" target="_blank" style="color:var(--accent);">github.com/jasemalyounes-rgb</a></p></footer>
-
-<!-- CHECKOUT MODAL -->
-<div class="modal-overlay" id="checkoutModal">
-  <div class="modal">
-    <button class="modal-close" id="modalCloseBtn">×</button>
-    <div class="modal-title">Complete your order</div>
-    <div class="modal-sub"><span id="co-service-lbl">Service:</span> <strong id="co-service">—</strong> &nbsp;·&nbsp; <span id="co-price-lbl">Price:</span> <strong id="co-price">—</strong></div>
-    <div class="pay-tabs">
-      <button class="pay-tab active" id="tabCrypto">₿ Crypto</button>
-      <button class="pay-tab" id="tabGpay">G Pay</button>
-    </div>
-    <div class="pay-panel active" id="panel-crypto">
-      <div class="amt-row">
-        <input type="number" id="co-amount" placeholder="Enter amount (USD)" min="1"/>
-        <span>USD</span>
-      </div>
-      <p style="font-size:12px;color:var(--text3);margin-bottom:1rem;">Select a wallet to pay with:</p>
-      <div id="co-coins"></div>
-      <div class="co-detail" id="co-detail">
-        <div class="co-qr-wrap">
-          <div id="co-qr"></div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:12px;color:var(--text3);margin-bottom:6px;" id="co-detail-label">Send to:</div>
-            <div class="co-full-addr" id="co-full-addr"></div>
-            <button class="copy-btn" id="co-copy-btn">Copy address</button>
-          </div>
-        </div>
-      </div>
-      <p class="pay-note">Send the exact amount above, then email me the TX hash to confirm your order.</p>
-    </div>
-    <div class="pay-panel" id="panel-gpay">
-      <div class="gpay-info"><strong>Google Pay</strong> lets clients pay via their Google account.<br><br>Tap the button below to pay securely with Google Pay.</div>
-      <div class="amt-row">
-        <input type="number" id="gpay-amount" placeholder="Enter amount (USD)" min="1"/>
-        <span>USD</span>
-      </div>
-      <button id="gpay-btn">G&nbsp; Pay with Google Pay</button>
-      <p class="pay-note"><span data-i18n="pay.note">Requires a merchant account. </span><a href="mailto:jasemalyounes@gmail.com" style="color:var(--accent);" data-i18n="pay.contactme">Contact me</a><span data-i18n="pay.note2"> to arrange payment.</span></p>
-    </div>
-  </div>
-</div>
+<footer><p>© 2026 Jasem Ahmad Alyounes · <a href="https://github.com/jasemalyounes-rgb" target="_blank" style="color:var(--accent);">github.com/jasemalyounes-rgb</a> · <a href="services.html" style="color:var(--accent);" data-i18n="footer.services">Freelance services →</a> · <a href="#" style="color:var(--accent);" data-i18n="footer.linkedin">LinkedIn</a><!-- TODO: add LinkedIn URL --></p></footer>
 
 <script>
-const COINS = [
-  {symbol:'BTC', name:'Bitcoin',      addr:'1Q18sTrtUco2MzcKPyyAhRFZGFPbf65gpn',              color:'#f7931a'},
-  {symbol:'ETH', name:'Ethereum',     addr:'0xe19479606e3490f97d8667ca3524b588468641a7',       color:'#627eea'},
-  {symbol:'USDT',name:'Tether (USDT)',addr:'0xe19479606e3490f97d8667ca3524b588468641a7',       color:'#26a17b'},
-  {symbol:'LTC', name:'Litecoin',     addr:'ltc1qyudg0w7kt3cu5rdg6jxl2ncjke3t2gked36ecs',     color:'#345d9d'},
-];
-
-const SERVICES = [
-  {id:'odoo',label:'Odoo ERP',desc:'Custom Odoo modules and full ERP implementations.',tiers:[
-    {name:'Starter',price:'$300',unit:'/module',popular:false,desc:'Single module for small teams.',features:['1 custom module','XML view design','Basic Python logic','Email support','-Data migration','-Training']},
-    {name:'Business',price:'$900',unit:'/project',popular:true,desc:'Multi-module for growing businesses.',features:['Up to 4 modules','Complex XML workflows','Full Python backend','PostgreSQL optimization','Basic data migration','1 training session']},
-    {name:'Enterprise',price:'$2,500',unit:'/project',popular:false,desc:'Full ERP rollout.',features:['Unlimited modules','Full ERP implementation','Oracle/PG integration','Complete data migration','3 training sessions','3 months support']},
-  ]},
-  {id:'web',label:'Website Building',desc:'Professional websites from landing pages to full corporate sites.',tiers:[
-    {name:'Landing Page',price:'$250',unit:'/site',popular:false,desc:'Fast single-page site.',features:['1-page responsive design','Contact form','SEO basics','Mobile-optimized','-CMS integration','-Custom animations']},
-    {name:'Business Site',price:'$700',unit:'/project',popular:true,desc:'Multi-page with CMS.',features:['Up to 6 pages','CMS integration','Custom design','SEO optimization','Lead forms','Basic animations']},
-    {name:'Full Corporate',price:'$1,800',unit:'/project',popular:false,desc:'Full-featured corporate site.',features:['Unlimited pages','Advanced CMS','Custom animations','Performance optimization','Blog/news module','6 months maintenance']},
-  ]},
-  {id:'saas',label:'SaaS Development',desc:'Build SaaS products from MVP to production-ready platforms.',tiers:[
-    {name:'MVP',price:'$1,200',unit:'/project',popular:false,desc:'Core features, fast to market.',features:['Core feature set','User auth & roles','Basic dashboard','REST API','-Payment integration','-Multi-tenancy']},
-    {name:'Growth',price:'$3,500',unit:'/project',popular:true,desc:'Full-featured with payments & analytics.',features:['All MVP features','Payment integration','Analytics dashboard','Multi-tenant support','Email notifications','3 months support']},
-    {name:'Scale',price:'$8,000',unit:'/project',popular:false,desc:'Production-grade at scale.',features:['All Growth features','Microservices','CI/CD pipeline','Advanced security','Custom integrations','6 months support']},
-  ]},
-  {id:'api',label:'API Development',desc:'Clean, documented RESTful APIs.',tiers:[
-    {name:'Basic',price:'$200',unit:'/API',popular:false,desc:'Simple CRUD API.',features:['Up to 10 endpoints','Basic auth','JSON responses','Postman docs','-Rate limiting','-Webhooks']},
-    {name:'Standard',price:'$500',unit:'/API',popular:true,desc:'Production-ready with full docs.',features:['Up to 30 endpoints','JWT/OAuth2','Rate limiting','Full API docs','Error handling','Webhook support']},
-    {name:'Advanced',price:'$1,200',unit:'/API',popular:false,desc:'Enterprise-grade with versioning.',features:['Unlimited endpoints','Advanced security','API versioning','Monitoring & logging','3rd-party integrations','2 months support']},
-  ]},
-  {id:'db',label:'Database',desc:'Architecture, optimization, Oracle/PostgreSQL.',tiers:[
-    {name:'Audit',price:'$150',unit:'/session',popular:false,desc:'Review existing database.',features:['Schema review','Query analysis','Performance report','Recommendations','-Redesign','-Migration']},
-    {name:'Design',price:'$400',unit:'/project',popular:true,desc:'Full database design.',features:['Schema design','Index optimization','Stored procedures','Oracle/PostgreSQL','Data integrity','1 month support']},
-    {name:'Migration',price:'$900',unit:'/project',popular:false,desc:'Full data migration.',features:['Full schema migration','Data transformation','Validation & testing','Rollback plan','Performance tuning','Post-migration support']},
-  ]},
-  {id:'consulting',label:'Consulting',desc:'Architecture, code quality and tech strategy.',tiers:[
-    {name:'Hourly',price:'$60',unit:'/hour',popular:false,desc:'Pay-as-you-go advice.',features:['1-on-1 session','Architecture advice','Code review','Tech stack guidance','-Follow-up report','-Ongoing support']},
-    {name:'Sprint',price:'$400',unit:'/week',popular:true,desc:'Weekly advisory.',features:['Up to 8 hrs/week','Code & PR reviews','Architecture sessions','Written recommendations','Slack/email access','Weekly summary']},
-    {name:'Retainer',price:'$1,200',unit:'/month',popular:false,desc:'Ongoing partnership.',features:['Up to 30 hrs/month','Full technical oversight','Team mentoring','Architecture planning','Priority response','Monthly strategy report']},
-  ]},
-];
-
 /* ---- I18N ---- */
-var I18N = {"nav.about":"نبذة","nav.skills":"المهارات","nav.experience":"الخبرات","nav.projects":"المشاريع","nav.services":"الخدمات","nav.contact":"تواصل","hero.available":"متاح للفرص الجديدة","hero.cred":"مطوّر أنظمة Odoo ERP","hero.credLink":"منشور على متجر تطبيقات Odoo","hero.cta":"تواصل معي","hero.cv":"تحميل السيرة الذاتية","hero.services":"الخدمات ←","meta.location":"بيروت، لبنان","meta.exp":"خبرة +14 سنة","sec.about":"نبذة عني","sec.skills":"المهارات التقنية","sec.experience":"الخبرات العملية","sec.projects":"المشاريع","sec.services":"الخدمات والأسعار","sec.contact":"تواصل معي","about.p1":"مهندس برمجيات أول حاصل على ماجستير في علوم الويب وبكالوريوس في هندسة البرمجيات، مع أكثر من أربعة عشر عامًا من الخبرة في بناء تطبيقات متكاملة قابلة للتوسّع.","about.p2":"خبير في Odoo 12–19 وPython، وربط بيانات المؤسسات المعقّدة (Oracle) بمعماريات الويب الحديثة. حاصل على شهادة CCNA، ويتقن العربية والإنجليزية.","stat.years":"سنوات الخبرة","stat.msc":"علوم الويب — الجامعة الافتراضية","stat.bsc":"هندسة البرمجيات","stat.ccna":"معتمد","skill.languages":"لغات البرمجة","skill.frameworks":"أطر العمل","skill.databases":"قواعد البيانات","skill.apis":"الواجهات والأدوات","skill.pm":"إدارة المشاريع","skill.net":"الشبكات","tag.coordination":"التنسيق","tag.reporting":"إعداد التقارير","tag.riskid":"تحديد المخاطر","tag.itinfra":"البنية التحتية","tag.xmlviews":"واجهات XML","exp1.title":"مطوّر ومستشار أنظمة ERP مستقل","exp1.company":"بيروت، لبنان","exp1.period":"أيلول 2024 – حتى الآن","exp1.b1":"استبدال نظام تتبّع إنتاج قائم على جداول البيانات (16 جدولًا مترابطًا، نحو 13,000 سجل تاريخي) بوحدة تصنيع مخصّصة على Odoo 19 تغطي مسارات التحضير بالليزر والتفريز والقياس وضبط الجودة والتصنيف والتغليف.","exp1.b2":"نشر تطبيق Smart Task Planner على متجر تطبيقات Odoo — تطبيق مستقل لإدارة المشاريع على Odoo 19 دون الاعتماد على النسخة المؤسسية.","exp1.b3":"تنفيذ أعمال ترحيل وتوافق على Odoo 19: الحقول المهملة، وترميز XML، وتغييرات بنية العروض.","exp1.b4":"إدارة خوادم Linux VPS: وكيل Nginx العكسي، وشهادات SSL/HTTPS، وخدمات systemd، والنسخ الاحتياطي المؤتمت.","exp2.title":"رئيس القسم التقني","exp2.company":"Lazer Net ISP، دمشق، سوريا","exp2.period":"كانون الثاني 2019 – أيلول 2024","exp2.note":"تمّت الترقية من مهندس أنظمة","exp2.b1":"قيادة العمليات التقنية في 14 محافظة مع فريق من مهندسَين، وتولّي دورة حياة المشاريع كاملةً من تحليل المتطلبات حتى النشر والدعم.","exp2.b2":"تصميم وصيانة قواعد بيانات علائقية معقّدة على Oracle وSQL.","exp2.b3":"إدارة البنية التحتية للشبكات والدعم التقني في جميع المواقع.","exp2.b4":"تصميم وتقديم دورات تدريبية في البرمجة وأنظمة التشغيل وقواعد البيانات (SQL) والشبكات.","exp3.title":"مهندس أنظمة وبرمجيات","exp3.company":"القطاع الخاص","exp3.period":"2012 – 2019","exp3.note":"تفاصيل هذا الدور مشمولة باتفاقية سرّية.","exp3.b1":"تطوير تطبيقات سطح مكتب مدعومة بقواعد بيانات علائقية.","exp3.b2":"إدارة الخوادم والبنية التحتية المساندة.","exp3.b3":"العمل على معالجة البيانات وإعداد التقارير.","exp3.b4":"تقديم تدريب تقني للموظفين.","proj.harmonia.desc":"تطبيق لسلامة العائلة ومشاركة الموقع — تتبّع مباشر، وتنبيهات استغاثة، ومناطق جغرافية، وأدوار للأوصياء، مع بديل يعمل عبر الرسائل القصيرة دون إنترنت. حزمة متكاملة: تطبيق Expo/React Native وواجهة Fastify وخادم PostgreSQL مُدار ذاتيًا.","proj.stp.desc":"تطبيق مستقل لإدارة المشاريع على Odoo 19 منشور على متجر تطبيقات Odoo. مخطط Gantt تفاعلي مع إعادة جدولة بالسحب والإفلات والاعتماديات والمعالم، ولوحة كانبان بسبع مراحل، وجلسات عمل وجداول زمنية، ولوحات تحكّم شخصية وتنفيذية — دون الاعتماد على النسخة المؤسسية.","proj.bot.desc":"بوت تيليجرام لبيع خدمات البروكسي من مراكز البيانات والبروكسي السكني. شحن المحفظة بالعملات الرقمية عبر Cryptomus، إضافةً إلى مسار تأكيد يدوي لخدمات OMT وWhish وسيريتل كاش — قنوات الدفع في لبنان وسوريا التي لا تملك واجهات برمجية عامة. مُهيّئات موردين قابلة للتبديل خلف واجهة تزويد واحدة.","proj.legends.desc":"لعبة ذاكرة للهواتف المحمولة — طابِق بين صور المشاهير في شبابهم وكبرهم. تسجيل دخول عبر Google، وتحقيق دخل بواسطة AdMob، واقتصاد عملات داخل اللعبة مع تلميحات، ونظام إحالة وصرف مدعوم بلوحة تحكّم إدارية.","proj.private":"مستودع خاص","proj.odoo.name":"مدير مهام البحث والتطوير على Odoo 19","proj.odoo.desc":"وحدة ERP مخصّصة لتتبّع مشاريع البحث والتطوير مع تفويض المدراء وسير عمل XML.","proj.oracle.name":"جسر Oracle والويب","proj.oracle.desc":"طبقة تكامل مؤسسية تربط قواعد بيانات Oracle بمعماريات الويب الحديثة.","proj.multi.name":"منصّة مشاريع متعدّدة الأقسام","proj.multi.desc":"نظام متكامل لإدارة المشاريع يدعم التنسيق بين الأقسام وإعداد التقارير.","services.intro":"اختر الخدمة ثم الباقة المناسبة. كل المشاريع تبدأ باستشارة مجانية.","contact.email":"البريد الإلكتروني","contact.phone":"الهاتف","contact.github":"جيت‌هاب","contact.location":"الموقع","pay.note":"يتطلّب حساب تاجر. ","pay.contactme":"تواصل معي","pay.note2":" لترتيب الدفع.","rt.getStarted":"ابدأ الآن","rt.mostPopular":"الأكثر طلبًا","rt.copy":"نسخ","rt.copied":"تم النسخ!","rt.qr":"رمز QR","rt.hide":"إخفاء","rt.copyAddress":"نسخ العنوان","rt.copiedAddress":"تم النسخ!","rt.scanToSend":"امسح لإرسال ","rt.sendTo":"أرسل ","rt.sendToSuffix":" إلى:","rt.amountPlaceholder":"أدخل المبلغ (دولار)","rt.enterValid":"يرجى إدخال مبلغ صحيح.","rt.gpayLoading":"جارٍ تحميل Google Pay. حاول مرة أخرى.","rt.paymentError":"حدث خطأ في الدفع. حاول مجددًا أو تواصل معي مباشرةً.","rt.paidService":"تم استلام الدفعة! راسلني على jasemalyounes@gmail.com بتفاصيل طلبك للتأكيد.","rt.completeOrder":"أكمل طلبك","rt.service":"الخدمة:","rt.price":"السعر:","rt.crypto":"₿ العملات الرقمية","rt.gpay":"Google Pay","rt.payWithGpay":"ادفع عبر Google Pay","rt.usd":"دولار"};
+var I18N = {"nav.about":"نبذة","nav.skills":"المهارات","nav.experience":"الخبرات","nav.projects":"المشاريع","nav.services":"الخدمات","nav.contact":"تواصل","hero.available":"متاح للفرص الجديدة","hero.cred":"مطوّر أنظمة Odoo ERP","hero.credLink":"منشور على متجر تطبيقات Odoo","hero.cta":"تواصل معي","hero.cv":"تحميل السيرة الذاتية","hero.services":"الخدمات ←","meta.location":"بيروت، لبنان","meta.exp":"خبرة +14 سنة","sec.about":"نبذة عني","sec.skills":"المهارات التقنية","sec.experience":"الخبرات العملية","sec.projects":"المشاريع","sec.services":"الخدمات والأسعار","sec.contact":"تواصل معي","about.p1":"مهندس برمجيات أول حاصل على ماجستير في علوم الويب وبكالوريوس في هندسة البرمجيات، مع أكثر من أربعة عشر عامًا من الخبرة في بناء تطبيقات متكاملة قابلة للتوسّع.","about.p2":"خبير في Odoo 12–19 وPython، وربط بيانات المؤسسات المعقّدة (Oracle) بمعماريات الويب الحديثة. حاصل على شهادة CCNA، ويتقن العربية والإنجليزية.","stat.years":"سنوات الخبرة","stat.msc":"علوم الويب — الجامعة الافتراضية","stat.bsc":"هندسة البرمجيات","stat.ccna":"معتمد","skill.languages":"لغات البرمجة","skill.frameworks":"أطر العمل","skill.databases":"قواعد البيانات","skill.apis":"الواجهات والأدوات","skill.pm":"إدارة المشاريع","skill.net":"الشبكات","tag.coordination":"التنسيق","tag.reporting":"إعداد التقارير","tag.riskid":"تحديد المخاطر","tag.itinfra":"البنية التحتية","tag.xmlviews":"واجهات XML","exp1.title":"مطوّر ومستشار أنظمة ERP مستقل","exp1.company":"بيروت، لبنان","exp1.period":"أيلول 2024 – حتى الآن","exp1.b1":"استبدال نظام تتبّع إنتاج قائم على جداول البيانات (16 جدولًا مترابطًا، نحو 13,000 سجل تاريخي) بوحدة تصنيع مخصّصة على Odoo 19 تغطي مسارات التحضير بالليزر والتفريز والقياس وضبط الجودة والتصنيف والتغليف.","exp1.b2":"نشر تطبيق Smart Task Planner على متجر تطبيقات Odoo — تطبيق مستقل لإدارة المشاريع على Odoo 19 دون الاعتماد على النسخة المؤسسية.","exp1.b3":"تنفيذ أعمال ترحيل وتوافق على Odoo 19: الحقول المهملة، وترميز XML، وتغييرات بنية العروض.","exp1.b4":"إدارة خوادم Linux VPS: وكيل Nginx العكسي، وشهادات SSL/HTTPS، وخدمات systemd، والنسخ الاحتياطي المؤتمت.","exp2.title":"رئيس القسم التقني","exp2.company":"Lazer Net ISP، دمشق، سوريا","exp2.period":"كانون الثاني 2019 – أيلول 2024","exp2.note":"تمّت الترقية من مهندس أنظمة","exp2.b1":"قيادة العمليات التقنية في 14 محافظة مع فريق من مهندسَين، وتولّي دورة حياة المشاريع كاملةً من تحليل المتطلبات حتى النشر والدعم.","exp2.b2":"تصميم وصيانة قواعد بيانات علائقية معقّدة على Oracle وSQL.","exp2.b3":"إدارة البنية التحتية للشبكات والدعم التقني في جميع المواقع.","exp2.b4":"تصميم وتقديم دورات تدريبية في البرمجة وأنظمة التشغيل وقواعد البيانات (SQL) والشبكات.","exp3.title":"مهندس أنظمة وبرمجيات","exp3.company":"القطاع الخاص","exp3.period":"2012 – 2019","exp3.note":"تفاصيل هذا الدور مشمولة باتفاقية سرّية.","exp3.b1":"تطوير تطبيقات سطح مكتب مدعومة بقواعد بيانات علائقية.","exp3.b2":"إدارة الخوادم والبنية التحتية المساندة.","exp3.b3":"العمل على معالجة البيانات وإعداد التقارير.","exp3.b4":"تقديم تدريب تقني للموظفين.","proj.harmonia.desc":"تطبيق لسلامة العائلة ومشاركة الموقع — تتبّع مباشر، وتنبيهات استغاثة، ومناطق جغرافية، وأدوار للأوصياء، مع بديل يعمل عبر الرسائل القصيرة دون إنترنت. حزمة متكاملة: تطبيق Expo/React Native وواجهة Fastify وخادم PostgreSQL مُدار ذاتيًا.","proj.stp.desc":"تطبيق مستقل لإدارة المشاريع على Odoo 19 منشور على متجر تطبيقات Odoo. مخطط Gantt تفاعلي مع إعادة جدولة بالسحب والإفلات والاعتماديات والمعالم، ولوحة كانبان بسبع مراحل، وجلسات عمل وجداول زمنية، ولوحات تحكّم شخصية وتنفيذية — دون الاعتماد على النسخة المؤسسية.","proj.bot.desc":"بوت تيليجرام لبيع خدمات البروكسي من مراكز البيانات والبروكسي السكني. شحن المحفظة بالعملات الرقمية عبر Cryptomus، إضافةً إلى مسار تأكيد يدوي لخدمات OMT وWhish وسيريتل كاش — قنوات الدفع في لبنان وسوريا التي لا تملك واجهات برمجية عامة. مُهيّئات موردين قابلة للتبديل خلف واجهة تزويد واحدة.","proj.legends.desc":"لعبة ذاكرة للهواتف المحمولة — طابِق بين صور المشاهير في شبابهم وكبرهم. تسجيل دخول عبر Google، وتحقيق دخل بواسطة AdMob، واقتصاد عملات داخل اللعبة مع تلميحات، ونظام إحالة وصرف مدعوم بلوحة تحكّم إدارية.","proj.private":"مستودع خاص","proj.odoo.name":"مدير مهام البحث والتطوير على Odoo 19","proj.odoo.desc":"وحدة ERP مخصّصة لتتبّع مشاريع البحث والتطوير مع تفويض المدراء وسير عمل XML.","proj.oracle.name":"جسر Oracle والويب","proj.oracle.desc":"طبقة تكامل مؤسسية تربط قواعد بيانات Oracle بمعماريات الويب الحديثة.","proj.multi.name":"منصّة مشاريع متعدّدة الأقسام","proj.multi.desc":"نظام متكامل لإدارة المشاريع يدعم التنسيق بين الأقسام وإعداد التقارير.","services.intro":"اختر الخدمة ثم الباقة المناسبة. كل المشاريع تبدأ باستشارة مجانية.","contact.email":"البريد الإلكتروني","contact.phone":"الهاتف","contact.github":"جيت‌هاب","contact.location":"الموقع","footer.services":"خدمات مستقلة ←","footer.linkedin":"لينكدإن"};
 var EN = {};
 var curLang = "en";
 // snapshot the English text once, so switching back is lossless
 document.querySelectorAll("[data-i18n]").forEach(function(el){ EN[el.getAttribute("data-i18n")] = el.innerHTML; });
-var EN_RT = {
-  "rt.getStarted":"Get started","rt.mostPopular":"Most Popular","rt.copy":"Copy","rt.copied":"Copied!",
-  "rt.qr":"QR","rt.hide":"Hide","rt.copyAddress":"Copy address","rt.copiedAddress":"Copied!",
-  "rt.scanToSend":"Scan to send ","rt.sendTo":"Send ","rt.sendToSuffix":" to:",
-  "rt.amountPlaceholder":"Enter amount (USD)","rt.enterValid":"Please enter a valid amount.",
-  "rt.gpayLoading":"Google Pay is loading. Please try again.",
-  "rt.paymentError":"Payment error. Please try again or contact me directly.",
-  "rt.paidService":"Payment received! Email jasemalyounes@gmail.com with your order details to confirm.",
-  "rt.completeOrder":"Complete your order","rt.service":"Service:","rt.price":"Price:",
-  "rt.crypto":"\u20BF Crypto","rt.gpay":"G Pay","rt.payWithGpay":"Pay with Google Pay","rt.usd":"USD"
-};
+var EN_RT = {};
 function tr(key){ return curLang==="ar" ? (I18N[key]!==undefined?I18N[key]:EN_RT[key]) : EN_RT[key]; }
 
 function applyLang(lang){
@@ -556,21 +395,6 @@ function applyLang(lang){
     if(ar){ if(I18N[k]!==undefined) el.innerHTML = I18N[k]; }
     else  { if(EN[k]!==undefined)   el.innerHTML = EN[k];   }
   });
-  // amount inputs
-  ["co-amount","gpay-amount"].forEach(function(id){
-    var el=document.getElementById(id); if(el) el.placeholder = tr("rt.amountPlaceholder");
-  });
-  // Google Pay buttons keep the G glyph
-  ["gpay-btn"].forEach(function(id){
-    var el=document.getElementById(id); if(el) el.innerHTML = "G&nbsp; " + tr("rt.payWithGpay");
-  });
-  // modal chrome
-  var mt=document.querySelector(".modal-title"); if(mt) mt.textContent = tr("rt.completeOrder");
-  var tc=document.getElementById("tabCrypto"); if(tc) tc.textContent = tr("rt.crypto");
-  var tg=document.getElementById("tabGpay");   if(tg) tg.textContent = tr("rt.gpay");
-  var cb=document.getElementById("co-copy-btn"); if(cb) cb.textContent = tr("rt.copyAddress");
-  var sl=document.getElementById("co-service-lbl"); if(sl) sl.textContent = tr("rt.service");
-  var pl=document.getElementById("co-price-lbl");   if(pl) pl.textContent = tr("rt.price");
   // language button shows the OTHER language
   var lb=document.getElementById("langToggle"); if(lb) lb.textContent = ar ? "English" : "العربية";
   // typing effect: swap the phrase list and restart cleanly
@@ -581,7 +405,6 @@ function applyLang(lang){
   var cvA = document.querySelector('a[download]');
   if(cvA) cvA.setAttribute("href", ar ? "Jasem-Alyounes-CV-AR.pdf" : "Jasem-Alyounes-CV.pdf");
   // re-render the dynamic sections in the new language
-  if(typeof renderServices === "function") renderServices();
   if(typeof observeReveals === "function") observeReveals();
   document.title = ar
     ? "جاسم اليونس | مهندس برمجيات أول ومختص أنظمة Odoo ERP"
@@ -592,20 +415,6 @@ document.getElementById("langToggle").addEventListener("click", function(){
   applyLang(curLang === "ar" ? "en" : "ar");
 });
 
-/* service-catalog translations */
-var SVC_AR = {"odoo":{"label":"أنظمة Odoo ERP","desc":"وحدات Odoo مخصّصة وتطبيقات ERP متكاملة."},"web":{"label":"بناء المواقع","desc":"مواقع احترافية من صفحات الهبوط إلى المواقع المؤسسية الكاملة."},"saas":{"label":"تطوير SaaS","desc":"بناء منتجات SaaS من النموذج الأولي إلى منصّات جاهزة للإنتاج."},"api":{"label":"تطوير الواجهات البرمجية","desc":"واجهات RESTful نظيفة وموثّقة."},"db":{"label":"قواعد البيانات","desc":"التصميم والتحسين، Oracle وPostgreSQL."},"consulting":{"label":"الاستشارات","desc":"المعمارية وجودة الشيفرة والاستراتيجية التقنية."}};
-var TIER_AR = {"Starter":"المبتدئة","Business":"الأعمال","Enterprise":"المؤسسية","Landing Page":"صفحة هبوط","Business Site":"موقع أعمال","Full Corporate":"موقع مؤسسي كامل","MVP":"النموذج الأولي","Growth":"النمو","Scale":"التوسّع","Basic":"الأساسية","Standard":"القياسية","Advanced":"المتقدّمة","Audit":"تدقيق","Design":"تصميم","Migration":"ترحيل","Hourly":"بالساعة","Sprint":"أسبوعية","Retainer":"شهرية"};
-var UNIT_AR = {"/module":"/وحدة","/project":"/مشروع","/site":"/موقع","/API":"/واجهة","/session":"/جلسة","/hour":"/ساعة","/week":"/أسبوع","/month":"/شهر"};
-var TDESC_AR = {"Single module for small teams.":"وحدة واحدة للفرق الصغيرة.","Multi-module for growing businesses.":"وحدات متعدّدة للأعمال النامية.","Full ERP rollout.":"تطبيق ERP متكامل.","Fast single-page site.":"موقع من صفحة واحدة سريع التنفيذ.","Multi-page with CMS.":"موقع متعدّد الصفحات مع نظام إدارة محتوى.","Full-featured corporate site.":"موقع مؤسسي بكامل الميزات.","Core features, fast to market.":"الميزات الأساسية وإطلاق سريع.","Full-featured with payments & analytics.":"ميزات كاملة مع المدفوعات والتحليلات.","Production-grade at scale.":"جاهز للإنتاج على نطاق واسع.","Simple CRUD API.":"واجهة CRUD بسيطة.","Production-ready with full docs.":"جاهزة للإنتاج مع توثيق كامل.","Enterprise-grade with versioning.":"بمستوى مؤسسي مع إدارة الإصدارات.","Review existing database.":"مراجعة قاعدة البيانات الحالية.","Full database design.":"تصميم كامل لقاعدة البيانات.","Full data migration.":"ترحيل كامل للبيانات.","Pay-as-you-go advice.":"استشارات بالدفع حسب الاستخدام.","Weekly advisory.":"استشارات أسبوعية.","Ongoing partnership.":"شراكة مستمرة."};
-var FEAT_AR = {"1 custom module":"وحدة مخصّصة واحدة","XML view design":"تصميم واجهات XML","Basic Python logic":"منطق Python أساسي","Email support":"دعم عبر البريد","Data migration":"ترحيل البيانات","Training":"تدريب","Up to 4 modules":"حتى 4 وحدات","Complex XML workflows":"سير عمل XML معقّد","Full Python backend":"واجهة خلفية Python كاملة","PostgreSQL optimization":"تحسين PostgreSQL","Basic data migration":"ترحيل بيانات أساسي","1 training session":"جلسة تدريب واحدة","Unlimited modules":"وحدات غير محدودة","Full ERP implementation":"تطبيق ERP كامل","Oracle/PG integration":"تكامل Oracle/PostgreSQL","Complete data migration":"ترحيل بيانات كامل","3 training sessions":"3 جلسات تدريب","3 months support":"دعم 3 أشهر","1-page responsive design":"تصميم متجاوب من صفحة واحدة","Contact form":"نموذج تواصل","SEO basics":"أساسيات تحسين محركات البحث","Mobile-optimized":"محسّن للهواتف","CMS integration":"تكامل نظام إدارة المحتوى","Custom animations":"حركات مخصّصة","Up to 6 pages":"حتى 6 صفحات","Custom design":"تصميم مخصّص","SEO optimization":"تحسين محركات البحث","Lead forms":"نماذج جذب العملاء","Basic animations":"حركات أساسية","Unlimited pages":"صفحات غير محدودة","Advanced CMS":"نظام إدارة محتوى متقدّم","Performance optimization":"تحسين الأداء","Blog/news module":"وحدة مدوّنة/أخبار","6 months maintenance":"صيانة 6 أشهر","Core feature set":"مجموعة الميزات الأساسية","User auth & roles":"المصادقة والأدوار","Basic dashboard":"لوحة تحكّم أساسية","REST API":"واجهة REST","Payment integration":"تكامل المدفوعات","Multi-tenancy":"تعدّد المستأجرين","All MVP features":"كل ميزات النموذج الأولي","Analytics dashboard":"لوحة تحليلات","Multi-tenant support":"دعم تعدّد المستأجرين","Email notifications":"إشعارات بريدية","All Growth features":"كل ميزات النمو","Microservices":"خدمات مصغّرة","CI/CD pipeline":"خط CI/CD","Advanced security":"أمان متقدّم","Custom integrations":"تكاملات مخصّصة","6 months support":"دعم 6 أشهر","Up to 10 endpoints":"حتى 10 نقاط نهاية","Basic auth":"مصادقة أساسية","JSON responses":"استجابات JSON","Postman docs":"توثيق Postman","Rate limiting":"تحديد معدّل الطلبات","Webhooks":"خطّافات ويب","Up to 30 endpoints":"حتى 30 نقطة نهاية","JWT/OAuth2":"JWT/OAuth2","Full API docs":"توثيق كامل للواجهة","Error handling":"معالجة الأخطاء","Webhook support":"دعم خطّافات الويب","Unlimited endpoints":"نقاط نهاية غير محدودة","API versioning":"إدارة إصدارات الواجهة","Monitoring & logging":"المراقبة والسجلات","3rd-party integrations":"تكاملات خارجية","2 months support":"دعم شهرين","Schema review":"مراجعة المخطط","Query analysis":"تحليل الاستعلامات","Performance report":"تقرير الأداء","Recommendations":"توصيات","Redesign":"إعادة تصميم","Migration":"ترحيل","Schema design":"تصميم المخطط","Index optimization":"تحسين الفهارس","Stored procedures":"إجراءات مخزّنة","Oracle/PostgreSQL":"Oracle/PostgreSQL","Data integrity":"سلامة البيانات","1 month support":"دعم شهر واحد","Full schema migration":"ترحيل كامل للمخطط","Data transformation":"تحويل البيانات","Validation & testing":"التحقّق والاختبار","Rollback plan":"خطة تراجع","Performance tuning":"ضبط الأداء","Post-migration support":"دعم بعد الترحيل","1-on-1 session":"جلسة فردية","Architecture advice":"استشارات معمارية","Code review":"مراجعة الشيفرة","Tech stack guidance":"إرشاد حول التقنيات","Follow-up report":"تقرير متابعة","Ongoing support":"دعم مستمر","Up to 8 hrs/week":"حتى 8 ساعات أسبوعيًا","Code & PR reviews":"مراجعة الشيفرة وطلبات الدمج","Architecture sessions":"جلسات معمارية","Written recommendations":"توصيات مكتوبة","Slack/email access":"تواصل عبر Slack/البريد","Weekly summary":"ملخّص أسبوعي","Up to 30 hrs/month":"حتى 30 ساعة شهريًا","Full technical oversight":"إشراف تقني كامل","Team mentoring":"إرشاد الفريق","Architecture planning":"تخطيط معماري","Priority response":"استجابة ذات أولوية","Monthly strategy report":"تقرير استراتيجي شهري"};
-function svcTx(id, field, fallback){
-  if(curLang!=="ar") return fallback;
-  var e = SVC_AR[id]; return (e && e[field]) ? e[field] : fallback;
-}
-function tierTx(name){ return curLang==="ar" && TIER_AR[name] ? TIER_AR[name] : name; }
-function unitTx(u){ return curLang==="ar" && UNIT_AR[u] ? UNIT_AR[u] : u; }
-function tdescTx(d){ return curLang==="ar" && TDESC_AR[d] ? TDESC_AR[d] : d; }
-function featTx(f){ return curLang==="ar" && FEAT_AR[f] ? FEAT_AR[f] : f; }
 
 /* ---- THEME ---- */
 document.getElementById('themeToggle').addEventListener('click', function(){
@@ -659,227 +468,12 @@ type();
 var obs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:.1});
-// Re-scan on demand: renderServices() replaces nodes, and any
-// element created after the initial pass would otherwise stay at opacity:0.
+// Re-scan on demand: any element created after the initial pass would
+// otherwise stay at opacity:0.
 function observeReveals(){
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){ obs.observe(el); });
 }
 observeReveals();
-
-/* ---- BUILD SERVICES ---- */
-var tabsEl = document.getElementById('svcTabs');
-var svcEl  = document.getElementById('svcServices');
-
-// Re-callable so a language switch can rebuild the tabs and tier cards.
-function renderServices(){
-tabsEl.innerHTML = ''; svcEl.innerHTML = '';
-SERVICES.forEach(function(s, si){
-  // tab
-  var tab = document.createElement('button');
-  tab.className = 'svc-tab' + (si===0?' active':'');
-  tab.textContent = svcTx(s.id,'label',s.label);
-  tab.addEventListener('click', function(){
-    document.querySelectorAll('.svc-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.svc-service').forEach(function(t){ t.classList.remove('active'); });
-    tab.classList.add('active');
-    document.getElementById('svc-'+s.id).classList.add('active');
-  });
-  tabsEl.appendChild(tab);
-
-  // service panel
-  var panel = document.createElement('div');
-  panel.className = 'svc-service' + (si===0?' active':'');
-  panel.id = 'svc-'+s.id;
-
-  var hdr = document.createElement('div');
-  hdr.className = 'svc-header';
-  hdr.innerHTML = '<h3>'+svcTx(s.id,'label',s.label)+'</h3><p>'+svcTx(s.id,'desc',s.desc)+'</p>';
-  panel.appendChild(hdr);
-
-  var grid = document.createElement('div');
-  grid.className = 'tiers-grid';
-
-  s.tiers.forEach(function(t){
-    var card = document.createElement('div');
-    card.className = 'tier-card' + (t.popular?' popular':'');
-
-    if(t.popular){
-      var badge = document.createElement('div');
-      badge.className = 'tier-badge';
-      badge.textContent = tr('rt.mostPopular');
-      card.appendChild(badge);
-    }
-
-    var nameEl = document.createElement('div'); nameEl.className='tier-name'; nameEl.textContent=tierTx(t.name); card.appendChild(nameEl);
-    var priceEl = document.createElement('div'); priceEl.className='tier-price'; priceEl.innerHTML=t.price+' <span>'+unitTx(t.unit)+'</span>'; card.appendChild(priceEl);
-    var descEl = document.createElement('div'); descEl.className='tier-desc'; descEl.textContent=tdescTx(t.desc); card.appendChild(descEl);
-
-    var ul = document.createElement('ul'); ul.className='tier-features';
-    t.features.forEach(function(f){
-      var li = document.createElement('li');
-      if(f.startsWith('-')){ li.className='no'; li.textContent=featTx(f.slice(1)); }
-      else { li.textContent=featTx(f); }
-      ul.appendChild(li);
-    });
-    card.appendChild(ul);
-
-    var btn = document.createElement('button');
-    btn.className = 'tier-btn';
-    btn.textContent = tr('rt.getStarted');
-    (function(svcName, tierName, tierPrice){
-      btn.addEventListener('click', function(){
-        openCheckout(svcName + ' – ' + tierName, tierPrice);
-      });
-    })(s.label, t.name, t.price);
-    card.appendChild(btn);
-    grid.appendChild(card);
-  });
-
-  panel.appendChild(grid);
-  svcEl.appendChild(panel);
-});
-}
-renderServices();
-
-/* ---- CHECKOUT ---- */
-var selectedCoin = null;
-var coQrGen = {};
-
-function openCheckout(service, price){
-  document.getElementById('co-service').textContent = service;
-  document.getElementById('co-price').textContent = price;
-  document.getElementById('co-amount').value = '';
-  document.getElementById('gpay-amount').value = '';
-  selectedCoin = null;
-  coQrGen = {};
-  document.getElementById('co-detail').classList.remove('show');
-
-  // build coin list
-  var coEl = document.getElementById('co-coins');
-  coEl.innerHTML = '';
-  COINS.forEach(function(c, i){
-    var row = document.createElement('div');
-    row.className = 'co-coin';
-    row.innerHTML =
-      '<div class="co-sym" style="background:'+c.color+'18;border:1.5px solid '+c.color+'44"><span style="color:'+c.color+'">'+c.symbol+'</span></div>'+
-      '<div class="co-info"><div class="co-name">'+c.name+'</div><div class="co-addr">'+c.addr+'</div></div>'+
-      '<div class="co-check" id="co-chk-'+i+'"></div>';
-    (function(idx){ row.addEventListener('click', function(){ selectCoin(idx); }); })(i);
-    coEl.appendChild(row);
-  });
-
-  // show modal
-  document.getElementById('checkoutModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  // reset to crypto tab
-  document.getElementById('panel-crypto').classList.add('active');
-  document.getElementById('panel-gpay').classList.remove('active');
-  document.getElementById('tabCrypto').classList.add('active');
-  document.getElementById('tabGpay').classList.remove('active');
-}
-
-function closeCheckout(){
-  document.getElementById('checkoutModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('modalCloseBtn').addEventListener('click', closeCheckout);
-document.getElementById('checkoutModal').addEventListener('click', function(e){
-  if(e.target === this) closeCheckout();
-});
-
-document.getElementById('tabCrypto').addEventListener('click', function(){
-  document.getElementById('panel-crypto').classList.add('active');
-  document.getElementById('panel-gpay').classList.remove('active');
-  this.classList.add('active');
-  document.getElementById('tabGpay').classList.remove('active');
-});
-document.getElementById('tabGpay').addEventListener('click', function(){
-  document.getElementById('panel-gpay').classList.add('active');
-  document.getElementById('panel-crypto').classList.remove('active');
-  this.classList.add('active');
-  document.getElementById('tabCrypto').classList.remove('active');
-});
-
-function selectCoin(i){
-  document.querySelectorAll('.co-coin').forEach(function(r){ r.classList.remove('selected'); });
-  document.querySelectorAll('[id^="co-chk-"]').forEach(function(r){ r.classList.remove('selected'); });
-  var rows = document.querySelectorAll('.co-coin');
-  rows[i].classList.add('selected');
-  selectedCoin = i;
-  var c = COINS[i];
-  var detail = document.getElementById('co-detail');
-  detail.classList.add('show');
-  document.getElementById('co-full-addr').textContent = c.addr;
-  document.getElementById('co-detail-label').textContent = tr('rt.sendTo')+c.symbol+tr('rt.sendToSuffix');
-  var copyBtn = document.getElementById('co-copy-btn');
-  copyBtn.onclick = function(){
-    navigator.clipboard.writeText(c.addr).then(function(){
-      copyBtn.textContent = tr('rt.copiedAddress');
-      setTimeout(function(){ copyBtn.textContent = tr('rt.copyAddress'); }, 1500);
-    });
-  };
-  var qrWrap = document.getElementById('co-qr');
-  qrWrap.innerHTML = '';
-  new QRCode(qrWrap, {text:c.addr, width:90, height:90, colorDark:'#000', colorLight:'#fff', correctLevel:QRCode.CorrectLevel.M});
-}
-
-var gpayClient = null;
-
-var gpayBaseRequest = {
-  apiVersion: 2,
-  apiVersionMinor: 0
-};
-
-var gpayAllowedMethods = [{
-  type: 'CARD',
-  parameters: {
-    allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-    allowedCardNetworks: ['AMEX', 'DISCOVER', 'JCB', 'MASTERCARD', 'VISA']
-  },
-  tokenizationSpecification: {
-    type: 'PAYMENT_GATEWAY',
-    parameters: {
-      gateway: 'example',
-      gatewayMerchantId: 'BCR2DN7TTDNL3AAR'
-    }
-  }
-}];
-
-function onGooglePayLoaded(){
-  gpayClient = new google.payments.api.PaymentsClient({environment: 'TEST'});
-}
-
-document.getElementById('gpay-btn').addEventListener('click', function(){
-  var amt = document.getElementById('gpay-amount').value;
-  if(!amt || amt <= 0){ alert(tr('rt.enterValid')); return; }
-  if(!gpayClient){ alert(tr('rt.gpayLoading')); return; }
-
-  var req = Object.assign({}, gpayBaseRequest, {
-    allowedPaymentMethods: gpayAllowedMethods,
-    transactionInfo: {
-      totalPriceStatus: 'FINAL',
-      totalPrice: parseFloat(amt).toFixed(2),
-      currencyCode: 'USD',
-      countryCode: 'US'
-    },
-    merchantInfo: {
-      merchantId: 'BCR2DN7TTDNL3AAR',
-      merchantName: 'Jasem Ahmad Alyounes'
-    }
-  });
-
-  gpayClient.loadPaymentData(req)
-    .then(function(){
-      alert(tr('rt.paidService'));
-      closeCheckout();
-    })
-    .catch(function(err){
-      if(err.statusCode !== 'CANCELED') alert(tr('rt.paymentError'));
-    });
-});
-
 
 
 // restore saved language (must run after the builders are defined)
