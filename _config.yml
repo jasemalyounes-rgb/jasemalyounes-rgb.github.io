@@ -1,3 +1,11 @@
 include:
   - sitemap.xml
   - robots.txt
+exclude:
+  - tests
+  - playwright.config.js
+  - package.json
+  - package-lock.json
+  - node_modules
+  - n8n
+  - cv-source
