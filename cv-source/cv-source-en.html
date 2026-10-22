@@ -30,17 +30,18 @@ github.com/jasemalyounes-rgb &nbsp;•&nbsp; jasemalyounes-rgb.github.io
 </p>
 
 <h2 style="font-weight:bold;font-size:9.8pt;color:#0f2b46;border-bottom:1.2pt solid #0f2b46;margin:11pt 0 5pt 0;padding-bottom:2pt;">PROFESSIONAL SUMMARY</h2>
-<p class="sum">Software engineer with <b>14 years of experience</b> spanning application development, relational database design and administration, Linux server and network infrastructure, and technical team leadership. Comfortable operating as the single technical owner in organisations without a dedicated IT function — writing the software, running the servers, and training the staff who use them. Deep specialisation in <b>Odoo ERP (v12–v19)</b>, with a module <b>published on the Odoo App Store</b>. M.Sc. in Web Science. CCNA certified. Fluent in Arabic and English.</p>
+<p class="sum">Software engineer with <b>14 years of experience</b> spanning application development, relational database design and administration, Linux server and network infrastructure, and technical team leadership. Comfortable operating as the single technical owner in organisations without a dedicated IT function — writing the software, running the servers, and training the staff who use them. Deep specialisation in <b>Odoo ERP (v12–v20)</b>, with a module <b>published on the Odoo App Store</b> for v19 and v20. Also ships full-stack mobile products to production, including an Android game on <b>Google Play</b>. M.Sc. in Web Science. CCNA certified. Fluent in Arabic and English.</p>
 
 <h2 style="font-weight:bold;font-size:9.8pt;color:#0f2b46;border-bottom:1.2pt solid #0f2b46;margin:11pt 0 5pt 0;padding-bottom:2pt;">EXPERIENCE</h2>
 
 <p class="job">Independent Software &amp; ERP Developer</p>
 <p class="meta">Sep 2024 – Present</p>
 <p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Replaced a spreadsheet-based production tracking system (<b>16 linked sheets, ~13,000 historical records</b>) with a custom Odoo 19 manufacturing module covering laser preparation, milling, measurement, QC, grading and packaging workflows.</p>
-<p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Published <b>Smart Task Planner</b> on the Odoo App Store — a standalone Odoo 19 project-management app with interactive Gantt, seven-stage kanban, timesheets and executive dashboards, built with <b>no Enterprise dependency</b>.</p>
+<p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Published <b>Smart Task Planner</b> on the Odoo App Store for <b>Odoo 19 and 20</b> — a standalone project-management app with a custom Gantt view type, seven-stage kanban, planned-vs-actual reporting and executive dashboards, built with <b>no Enterprise dependency</b>; ported to Odoo 20’s new access model and OWL 3.</p>
 <p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Delivered Odoo 19 migration and compatibility work: deprecated fields, XML encoding issues and view-architecture changes across upgraded modules.</p>
 <p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Built custom inherited XML views, list-view actions and OWL components; backend logic in Python over PostgreSQL.</p>
 <p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Managed Linux VPS environments end to end: Nginx reverse proxy, SSL/HTTPS, systemd services and automated backups.</p>
+<p style="margin:0 0 3pt 0;padding-left:13pt;text-indent:-13pt;">&#8226;&nbsp;&nbsp;Built and shipped own products end to end: <b>MonstersDuko</b>, an Android puzzle game on Google Play, and <b>Harmonia</b>, a family-safety app with native Kotlin background services — from mobile client and API to Dockerized self-hosted deployment.</p>
 
 <p class="job">Head of Technical Department</p>
 <p class="meta">Lazer Net ISP &nbsp;•&nbsp; Damascus, Syria &nbsp;•&nbsp; Jan 2019 – Sep 2024 &nbsp;•&nbsp; <i>Promoted from Systems Engineer</i></p>
@@ -60,29 +61,33 @@ github.com/jasemalyounes-rgb &nbsp;•&nbsp; jasemalyounes-rgb.github.io
 
 <h2 style="font-weight:bold;font-size:9.8pt;color:#0f2b46;border-bottom:1.2pt solid #0f2b46;margin:11pt 0 5pt 0;padding-bottom:2pt;">SELECTED PROJECTS</h2>
 <p class="proj"><span class="pname">Smart Task Planner</span> — apps.odoo.com<br>
-Standalone Odoo 19 project-management app published on the Odoo App Store. Interactive Gantt with drag-and-drop rescheduling and dependencies, seven-stage kanban, work sessions and timesheets, personal and executive dashboards. No Enterprise dependency.<br>
-<span class="stack">Odoo 19 · Python · PostgreSQL · OWL · XML</span></p>
+Paid project-management app on the Odoo App Store for Odoo 19 and 20, with no Enterprise dependency. Registered a new Gantt view type (drag-to-reschedule, dependency arrows, cycle-checked dependencies), a planned-vs-actual hours report built as a PostgreSQL view, recurring tasks and sessions, and department-scoped access across four roles.<br>
+<span class="stack">Odoo 19 / 20 · Python · OWL · PostgreSQL · JavaScript</span></p>
 
 <p class="proj"><span class="pname">Manufacturing Execution Module (Odoo 19)</span> — client project<br>
 Custom module replacing an Excel-based tracking system for precision component manufacturing: chassis preparation, milling, measurement, cleaning/QC, grading and packaging, with ~13,000 records migrated from 16 source sheets.<br>
 <span class="stack">Odoo 19 · Python · PostgreSQL · XML</span></p>
 
 <p class="proj"><span class="pname">Harmonia</span> — harmonia-safety.vercel.app<br>
-Family safety and location-sharing app: live tracking, SOS alerts, geofenced places, guardian roles and an offline SMS fallback. Built the mobile client, API and self-hosted infrastructure end to end.<br>
-<span class="stack">React Native (Expo) · TypeScript · Fastify · PostgreSQL · Redis</span></p>
+Family safety app for Android: live location sharing, one-tap SOS with a Do-Not-Disturb-bypassing alarm and live audio, geofenced places, and an AES-GCM encrypted SMS fallback when there is no data. A native Kotlin foreground service with an on-disk queue keeps reporting through app kills; realtime family map over Socket.IO. Built client, API and self-hosted infrastructure end to end.<br>
+<span class="stack">React Native (Expo) · Kotlin · TypeScript · Fastify · Socket.IO · PostgreSQL · Redis</span></p>
+
+<p class="proj"><span class="pname">MonstersDuko</span> — Google Play<br>
+Logic puzzle game for Android: 1,000 levels in a 3D castle, live duels, weekly leagues, team lodges and a player board editor. An offline Python generator and solver guarantee every board has one guess-free solution; new chapters are served from the API without app updates. Google Play Billing, English/Arabic RTL, 118 API and 229 Android tests.<br>
+<span class="stack">Kotlin · Jetpack Compose · Python · FastAPI · SQLite · Docker</span></p>
 
 <p class="proj"><span class="pname">Super Proxy Store</span> — t.me/myproxystore_bot<br>
 Telegram commerce bot with crypto wallet top-ups via Cryptomus plus a manual confirmation flow for OMT, Whish and Syriatel Cash — regional payment rails with no public API — behind pluggable supplier adapters.<br>
 <span class="stack">Node.js · Telegraf · Fastify · PostgreSQL</span></p>
 
 <h2 style="font-weight:bold;font-size:9.8pt;color:#0f2b46;border-bottom:1.2pt solid #0f2b46;margin:11pt 0 5pt 0;padding-bottom:2pt;">TECHNICAL SKILLS</h2>
-<p class="sk"><b class="k">Languages</b> — Python · JavaScript / TypeScript · SQL · PHP · Java · XML</p>
-<p class="sk"><b class="k">Databases</b> — PostgreSQL · Oracle · MySQL / SQL Server — design, administration, tuning, migration and analysis</p>
-<p class="sk"><b class="k">Backend &amp; APIs</b> — Fastify · Node.js · Laravel · Spring Boot · RESTful API design and integration</p>
-<p class="sk"><b class="k">Systems &amp; Infrastructure</b> — Linux server administration · Nginx · SSL/HTTPS · systemd · SSH hardening · backup and recovery · VPS and on-premise deployment</p>
+<p class="sk"><b class="k">Languages</b> — Python · JavaScript / TypeScript · Kotlin · SQL · PHP · Java · XML</p>
+<p class="sk"><b class="k">Databases</b> — PostgreSQL · Oracle · MySQL / SQL Server · Redis · SQLite — design, administration, tuning, migration and analysis</p>
+<p class="sk"><b class="k">Backend &amp; APIs</b> — Fastify · FastAPI · Node.js · Socket.IO · Laravel · Spring Boot · RESTful API design and integration</p>
+<p class="sk"><b class="k">Systems &amp; Infrastructure</b> — Linux server administration · Nginx · SSL/HTTPS · systemd · Docker · SSH hardening · backup and recovery · VPS and on-premise deployment</p>
 <p class="sk"><b class="k">Networking &amp; IT Support</b> — CCNA certified · network infrastructure · hardware and software troubleshooting · end-user support</p>
-<p class="sk"><b class="k">ERP — Odoo</b> — versions 12 → 19 · custom modules · migrations and version-compatibility · inherited XML views · OWL · QWeb · App Store publishing</p>
-<p class="sk"><b class="k">Mobile &amp; Web</b> — React Native (Expo) · TypeScript · responsive web applications · Arabic RTL interfaces</p>
+<p class="sk"><b class="k">ERP — Odoo</b> — versions 12 → 20 · custom modules · migrations and version-compatibility · inherited XML views · OWL · QWeb · App Store publishing</p>
+<p class="sk"><b class="k">Mobile &amp; Web</b> — React Native (Expo) · Kotlin · Jetpack Compose · TypeScript · Google Play Billing · responsive web applications · Arabic RTL interfaces</p>
 <p class="sk"><b class="k">Leadership</b> — technical team management · requirements gathering · risk identification · stakeholder reporting · technical training design and delivery</p>
 
 <h2 style="font-weight:bold;font-size:9.8pt;color:#0f2b46;border-bottom:1.2pt solid #0f2b46;margin:11pt 0 5pt 0;padding-bottom:2pt;">EDUCATION &amp; CERTIFICATIONS</h2>
