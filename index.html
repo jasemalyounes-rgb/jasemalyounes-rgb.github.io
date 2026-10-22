@@ -113,6 +113,73 @@ section.inner{max-width:960px;margin:0 auto;padding:4rem 2rem;}
 .project-link svg{width:13px;height:13px;flex-shrink:0;}
 .project-private{display:inline-flex;align-items:center;gap:.35rem;font-size:12px;color:var(--text3);}
 .project-private svg{width:12px;height:12px;flex-shrink:0;}
+/* --- alive: progress, blobs, marquee, spotlight, featured work, lightbox --- */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:linear-gradient(90deg,var(--accent),#a855f7,#14b8a6);transform:scaleX(0);transform-origin:0 50%;pointer-events:none;}
+html[dir="rtl"] .scroll-progress{transform-origin:100% 50%;}
+.nav-links a.active{color:var(--accent);}
+.hero-blobs{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.hero-blobs span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.28;animation:blob 22s ease-in-out infinite;}
+.hero-blobs span:nth-child(1){width:420px;height:420px;background:var(--accent);top:-140px;left:-80px;}
+.hero-blobs span:nth-child(2){width:360px;height:360px;background:#a855f7;top:30%;right:-120px;animation-delay:-7s;animation-duration:26s;}
+.hero-blobs span:nth-child(3){width:300px;height:300px;background:#14b8a6;bottom:-160px;left:35%;animation-delay:-13s;animation-duration:30s;}
+[data-theme="dark"] .hero-blobs span{opacity:.16;}
+@keyframes blob{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(60px,40px) scale(1.12);}66%{transform:translate(-40px,30px) scale(.92);}}
+.marquee{direction:ltr;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:.85rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.marquee-track{display:flex;gap:2.4rem;width:max-content;animation:marquee 45s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee-track span{font-size:13px;font-weight:500;color:var(--text3);white-space:nowrap;display:inline-flex;align-items:center;gap:2.4rem;transition:color .2s;}
+.marquee-track span:hover{color:var(--accent);}
+.marquee-track span::after{content:"◆";font-size:7px;color:var(--accent);opacity:.5;}
+@keyframes marquee{to{transform:translateX(-50%);}}
+.spot{position:relative;isolation:isolate;}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(37,99,235,.10),transparent 45%);}
+[data-theme="dark"] .spot::after{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(96,165,250,.12),transparent 45%);}
+.spot:hover::after{opacity:1;}
+.sub-label{font-size:13px;font-weight:600;color:var(--text2);margin:0 0 1rem;display:flex;align-items:center;gap:.6rem;}
+.sub-label::after{content:"";flex:1;height:1px;background:var(--border);}
+.feat-list{display:flex;flex-direction:column;gap:1.6rem;margin-bottom:3rem;}
+.feat{display:grid;grid-template-columns:1.15fr 1fr;background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .35s,box-shadow .35s;}
+.feat:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.08);}
+[data-theme="dark"] .feat:hover{box-shadow:0 18px 40px rgba(0,0,0,.45);}
+.feat:nth-child(even) .feat-media{order:2;}
+.feat-media{position:relative;display:block;width:100%;min-height:250px;border:0;padding:0;margin:0;cursor:zoom-in;overflow:hidden;background:var(--bg3);font:inherit;color:inherit;}
+.feat-media>img:not(.feat-phone){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .8s cubic-bezier(.2,.7,.2,1);}
+.feat:hover .feat-media>img:not(.feat-phone){transform:scale(1.05);}
+.feat-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35));pointer-events:none;}
+.feat-badge{position:absolute;top:14px;inset-inline-start:14px;z-index:2;display:inline-flex;align-items:center;gap:.4rem;font-size:11.5px;font-weight:600;padding:5px 11px;border-radius:99px;background:rgba(255,255,255,.92);color:#111;box-shadow:0 4px 14px rgba(0,0,0,.15);backdrop-filter:blur(6px);}
+.feat-badge i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:livePulse 2s infinite;}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55);}70%{box-shadow:0 0 0 8px rgba(34,197,94,0);}100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}}
+.feat-count{position:absolute;bottom:12px;inset-inline-end:12px;z-index:2;display:inline-flex;align-items:center;gap:.35rem;font-size:11.5px;font-weight:500;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.6);color:#fff;opacity:.85;transition:opacity .2s,transform .2s;}
+.feat-count svg{width:12px;height:12px;}
+.feat:hover .feat-count{opacity:1;transform:translateY(-2px);}
+.feat-phone{position:absolute;z-index:1;height:auto;bottom:-38px;inset-inline-end:7%;width:27%;border-radius:14px;border:3px solid #1f2937;box-shadow:0 18px 40px rgba(0,0,0,.5);transform:rotate(7deg);transition:transform .6s cubic-bezier(.34,1.4,.64,1);}
+.feat-phone.p2{inset-inline-end:27%;width:24%;transform:rotate(-6deg);bottom:-60px;}
+.feat:hover .feat-phone{transform:rotate(2deg) translateY(-26px);}
+.feat:hover .feat-phone.p2{transform:rotate(-2deg) translateY(-18px);}
+.feat-body{padding:1.6rem 1.7rem;display:flex;flex-direction:column;gap:.7rem;}
+.feat-kicker{font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);opacity:.85;}
+.feat-body .project-name{font-size:1.35rem;font-weight:700;letter-spacing:-.4px;}
+.feat-body .project-desc{font-size:14px;}
+.shots-btn{display:inline-flex;align-items:center;gap:.35rem;font:inherit;font-size:12px;font-weight:500;color:var(--text2);background:none;border:none;cursor:pointer;padding:0;transition:color .2s;}
+.shots-btn:hover{color:var(--accent);}
+.shots-btn svg{width:13px;height:13px;}
+@media(max-width:760px){.feat{grid-template-columns:1fr;}.feat:nth-child(even) .feat-media{order:0;}.feat-media{aspect-ratio:16/10;min-height:0;}}
+.lb{position:fixed;inset:0;z-index:1000;background:rgba(8,8,10,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px);}
+.lb.open{opacity:1;pointer-events:auto;}
+.lb figure{margin:0;max-width:min(1100px,92vw);display:flex;flex-direction:column;align-items:center;gap:.8rem;}
+.lb img{max-width:100%;max-height:78vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6);transform:scale(.96);transition:transform .3s,opacity .2s;}
+.lb.open img{transform:none;}
+.lb figcaption{color:#e5e5e5;font-size:14px;text-align:center;}
+.lb-btn{position:absolute;border:none;background:rgba(255,255,255,.1);color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.lb-btn:hover{background:rgba(255,255,255,.22);}
+.lb-close{top:18px;right:18px;}
+.lb-prev{left:18px;top:50%;transform:translateY(-50%);}
+.lb-next{right:18px;top:50%;transform:translateY(-50%);}
+.lb-dots{display:flex;gap:6px;}
+.lb-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .2s;}
+.lb-dots i.on{background:#fff;width:20px;border-radius:4px;}
+@media(max-width:600px){.lb-prev,.lb-next{top:auto;bottom:18px;transform:none;}}
+@media(prefers-reduced-motion:reduce){.hero-blobs span,.marquee-track,.feat-badge i{animation:none;}.feat,.feat-media>img,.feat-phone{transition:none;}}
 /* --- language toggle + RTL --- */
 .lang-btn{display:inline-flex;align-items:center;gap:.3rem;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;border:1px solid var(--border);background:var(--bg2);color:var(--text2);margin-inline-end:.5rem;}
 .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
@@ -154,6 +221,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 </style>
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <nav>
   <div class="nav-inner">
@@ -176,6 +244,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 </nav>
 
 <div class="hero">
+  <div class="hero-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
   <canvas class="hero-canvas" id="matrixCanvas"></canvas>
   <div class="hero-content">
     <div>
@@ -195,6 +264,10 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
         <a href="Jasem-Alyounes-CV.pdf" download rel="noopener" class="btn btn-ghost">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-i18n="hero.cv">Download CV (PDF)</span>
+        </a>
+        <a href="#projects" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span data-i18n="hero.work">View my work</span>
         </a>
         <a href="https://github.com/jasemalyounes-rgb" target="_blank" class="btn btn-ghost">GitHub</a>
       </div>
@@ -218,7 +291,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
     </div>
   </div>
 </div>
-<div class="divider"></div>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Odoo 12–20</span><span>Python</span><span>PostgreSQL</span><span>OWL</span><span>Kotlin</span><span>Jetpack Compose</span><span>React Native</span><span>TypeScript</span><span>Fastify</span><span>FastAPI</span><span>Node.js</span><span>Socket.IO</span><span>Redis</span><span>Oracle</span><span>Docker</span><span>Nginx</span><span>Linux</span><span>REST APIs</span><span>Laravel</span><span>CCNA</span></div></div>
 
 <section class="inner" id="about">
   <div class="section-label" data-i18n="sec.about">About me</div>
@@ -228,10 +301,10 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
       <p data-i18n="about.p2">Expert in Odoo 12–20 and Python, bridging complex enterprise data (Oracle) with modern web architectures. CCNA certified. Fluent in Arabic and English.</p>
     </div>
     <div class="stat-cards reveal-right">
-      <div class="stat-card"><div class="stat-num">14+</div><div class="stat-desc" data-i18n="stat.years">Years experience</div></div>
-      <div class="stat-card"><div class="stat-num">M.Sc.</div><div class="stat-desc" data-i18n="stat.msc">Web Science — SVU</div></div>
-      <div class="stat-card"><div class="stat-num">B.Sc.</div><div class="stat-desc" data-i18n="stat.bsc">Software Engineering</div></div>
-      <div class="stat-card"><div class="stat-num">CCNA</div><div class="stat-desc" data-i18n="stat.ccna">Certified</div></div>
+      <div class="stat-card spot"><div class="stat-num" data-count="14" data-suffix="+">14+</div><div class="stat-desc" data-i18n="stat.years">Years experience</div></div>
+      <div class="stat-card spot"><div class="stat-num">M.Sc.</div><div class="stat-desc" data-i18n="stat.msc">Web Science — SVU</div></div>
+      <div class="stat-card spot"><div class="stat-num">B.Sc.</div><div class="stat-desc" data-i18n="stat.bsc">Software Engineering</div></div>
+      <div class="stat-card spot"><div class="stat-num">CCNA</div><div class="stat-desc" data-i18n="stat.ccna">Certified</div></div>
     </div>
   </div>
 </section>
@@ -240,12 +313,12 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 <section class="inner" id="skills">
   <div class="section-label" data-i18n="sec.skills">Technical skills</div>
   <div class="skills-grid">
-    <div class="skill-group reveal"><div class="skill-group-title" data-i18n="skill.languages">Languages</div><div class="skill-tags"><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Kotlin</span><span class="tag">SQL</span><span class="tag">PHP</span><span class="tag">Java</span></div></div>
-    <div class="skill-group reveal" style="transition-delay:.08s"><div class="skill-group-title" data-i18n="skill.frameworks">Frameworks</div><div class="skill-tags"><span class="tag">Odoo 12–20</span><span class="tag">Odoo Migrations</span><span class="tag">Module Development</span><span class="tag">OWL</span><span class="tag">QWeb</span><span class="tag">React Native</span><span class="tag">Jetpack Compose</span><span class="tag">Fastify</span><span class="tag">FastAPI</span><span class="tag">Laravel</span><span class="tag">Spring Boot</span></div></div>
-    <div class="skill-group reveal" style="transition-delay:.16s"><div class="skill-group-title" data-i18n="skill.databases">Databases</div><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">SQLite</span></div></div>
-    <div class="skill-group reveal" style="transition-delay:.24s"><div class="skill-group-title" data-i18n="skill.apis">APIs & Tools</div><div class="skill-tags"><span class="tag">RESTful APIs</span><span class="tag" data-i18n="tag.xmlviews">XML Views</span><span class="tag">Socket.IO</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Nginx</span><span class="tag">Git</span></div></div>
-    <div class="skill-group reveal" style="transition-delay:.32s"><div class="skill-group-title" data-i18n="skill.pm">Project & Mgmt</div><div class="skill-tags"><span class="tag" data-i18n="tag.coordination">Coordination</span><span class="tag" data-i18n="tag.reporting">Reporting</span><span class="tag" data-i18n="tag.riskid">Risk ID</span></div></div>
-    <div class="skill-group reveal" style="transition-delay:.4s"><div class="skill-group-title" data-i18n="skill.net">Networking</div><div class="skill-tags"><span class="tag">CCNA</span><span class="tag" data-i18n="tag.itinfra">IT Infrastructure</span></div></div>
+    <div class="skill-group spot reveal"><div class="skill-group-title" data-i18n="skill.languages">Languages</div><div class="skill-tags"><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Kotlin</span><span class="tag">SQL</span><span class="tag">PHP</span><span class="tag">Java</span></div></div>
+    <div class="skill-group spot reveal" style="transition-delay:.08s"><div class="skill-group-title" data-i18n="skill.frameworks">Frameworks</div><div class="skill-tags"><span class="tag">Odoo 12–20</span><span class="tag">Odoo Migrations</span><span class="tag">Module Development</span><span class="tag">OWL</span><span class="tag">QWeb</span><span class="tag">React Native</span><span class="tag">Jetpack Compose</span><span class="tag">Fastify</span><span class="tag">FastAPI</span><span class="tag">Laravel</span><span class="tag">Spring Boot</span></div></div>
+    <div class="skill-group spot reveal" style="transition-delay:.16s"><div class="skill-group-title" data-i18n="skill.databases">Databases</div><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">SQLite</span></div></div>
+    <div class="skill-group spot reveal" style="transition-delay:.24s"><div class="skill-group-title" data-i18n="skill.apis">APIs & Tools</div><div class="skill-tags"><span class="tag">RESTful APIs</span><span class="tag" data-i18n="tag.xmlviews">XML Views</span><span class="tag">Socket.IO</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Nginx</span><span class="tag">Git</span></div></div>
+    <div class="skill-group spot reveal" style="transition-delay:.32s"><div class="skill-group-title" data-i18n="skill.pm">Project & Mgmt</div><div class="skill-tags"><span class="tag" data-i18n="tag.coordination">Coordination</span><span class="tag" data-i18n="tag.reporting">Reporting</span><span class="tag" data-i18n="tag.riskid">Risk ID</span></div></div>
+    <div class="skill-group spot reveal" style="transition-delay:.4s"><div class="skill-group-title" data-i18n="skill.net">Networking</div><div class="skill-tags"><span class="tag">CCNA</span><span class="tag" data-i18n="tag.itinfra">IT Infrastructure</span></div></div>
   </div>
 </section>
 <div class="divider"></div>
@@ -253,7 +326,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 <section class="inner" id="experience">
   <div class="section-label" data-i18n="sec.experience">Experience</div>
   <div class="exp-list">
-    <div class="exp-card reveal">
+    <div class="exp-card spot reveal">
       <div class="exp-dot"></div>
       <div>
         <div class="exp-header"><span class="exp-title" data-i18n="exp1.title">Independent ERP Developer &amp; Consultant</span><span class="exp-period" data-i18n="exp1.period">Sep 2024 – Present</span></div>
@@ -267,7 +340,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
         </ul>
       </div>
     </div>
-    <div class="exp-card reveal" style="transition-delay:.12s">
+    <div class="exp-card spot reveal" style="transition-delay:.12s">
       <div class="exp-dot"></div>
       <div>
         <div class="exp-header"><span class="exp-title" data-i18n="exp2.title">Head of Technical Department</span><span class="exp-period" data-i18n="exp2.period">Jan 2019 – Sep 2024</span></div>
@@ -281,7 +354,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
         </ul>
       </div>
     </div>
-    <div class="exp-card reveal" style="transition-delay:.24s">
+    <div class="exp-card spot reveal" style="transition-delay:.24s">
       <div class="exp-dot"></div>
       <div>
         <div class="exp-header"><span class="exp-title" data-i18n="exp3.title">Systems &amp; Software Engineer</span><span class="exp-period" data-i18n="exp3.period">2012 – 2019</span></div>
@@ -301,55 +374,82 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 
 <section class="inner" id="projects">
   <div class="section-label" data-i18n="sec.projects">Projects</div>
+  <div class="sub-label" data-i18n="proj.featured">Featured work</div>
+  <div class="feat-list">
+    <article class="feat spot reveal">
+      <button class="feat-media" type="button" data-gallery="stp" aria-label="Smart Task Planner screenshots">
+        <img src="img/stp-gantt.jpg" alt="Smart Task Planner Gantt timeline" width="1200" height="541" loading="lazy" style="object-position:0 0">
+        <span class="feat-badge"><i></i><span data-i18n="badge.store">On the Odoo App Store</span></span>
+        <span class="feat-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>4</span>
+      </button>
+      <div class="feat-body">
+        <div class="feat-kicker" data-i18n="kick.stp">Odoo 19 &amp; 20 · Paid app</div>
+        <h3 class="project-name">Smart Task Planner</h3>
+        <p class="project-desc" data-i18n="proj.stp.desc">Project and task management app for Odoo 19 and 20, sold on the Odoo App Store, with no dependency on Enterprise modules: an interactive drag-and-drop Gantt chart with task dependencies, a seven-stage kanban board, a work-session calendar with planned vs actual hours, and an executive dashboard. Department-based access control across four roles.</p>
+        <div class="project-stack"><span class="tag">Odoo 19 / 20</span><span class="tag">Python</span><span class="tag">OWL</span><span class="tag">PostgreSQL</span><span class="tag">JavaScript</span></div>
+        <div class="project-links"><a class="project-link" href="https://apps.odoo.com/apps/modules/19.0/smart_task_planner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Odoo App Store</a><button class="shots-btn" type="button" data-gallery="stp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span data-i18n="proj.shots">Screenshots</span></button></div>
+      </div>
+    </article>
+    <article class="feat spot reveal">
+      <button class="feat-media" type="button" data-gallery="monsters" aria-label="MonstersDuko screenshots" style="background:#141212">
+        <img src="img/monsters-cover.jpg" alt="MonstersDuko — find them before they find you" width="1024" height="500" loading="lazy" style="object-fit:contain;object-position:0 35%">
+        <img class="feat-phone p2" src="img/monsters-1.jpg" alt="" width="540" height="960" loading="lazy">
+        <img class="feat-phone" src="img/monsters-2.jpg" alt="" width="540" height="960" loading="lazy">
+        <span class="feat-badge"><i></i><span data-i18n="badge.play">On Google Play</span></span>
+        <span class="feat-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>4</span>
+      </button>
+      <div class="feat-body">
+        <div class="feat-kicker" data-i18n="kick.monsters">Android game · Full stack</div>
+        <h3 class="project-name">MonstersDuko</h3>
+        <p class="project-desc" data-i18n="proj.monsters.desc">Logic puzzle game for Android: find the monsters hidden in each room of a board while climbing a 3D castle of 1,000 levels. Live duels, weekly leagues, team lodges and a board editor. Kotlin/Jetpack Compose app, offline Python puzzle generator and a self-hosted FastAPI + SQLite server.</p>
+        <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLite</span></div>
+        <div class="project-links"><a class="project-link" href="https://play.google.com/store/apps/details?id=com.monstersduko" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Google Play</a><button class="shots-btn" type="button" data-gallery="monsters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span data-i18n="proj.shots">Screenshots</span></button></div>
+      </div>
+    </article>
+    <article class="feat spot reveal">
+      <button class="feat-media" type="button" data-gallery="harmonia" aria-label="Harmonia screenshots">
+        <img src="img/harmonia-cover.jpg" alt="Harmonia landing page" width="1200" height="583" loading="lazy" style="object-position:12% 50%">
+        <span class="feat-badge"><i></i><span data-i18n="badge.live">Live</span></span>
+        <span class="feat-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>3</span>
+      </button>
+      <div class="feat-body">
+        <div class="feat-kicker" data-i18n="kick.harmonia">Android app · Full stack</div>
+        <h3 class="project-name">Harmonia</h3>
+        <p class="project-desc" data-i18n="proj.harmonia.desc">Family safety app for Android: live location sharing, one-tap SOS with a loud alarm and live audio for guardians, geofenced places, and an encrypted SMS fallback when there is no data. Full stack: Expo/React Native with native Kotlin services, a Fastify API and self-hosted PostgreSQL.</p>
+        <div class="project-stack"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Kotlin</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span></div>
+        <div class="project-links"><a class="project-link" href="https://harmonia-safety.vercel.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>harmonia-safety.vercel.app</a><button class="shots-btn" type="button" data-gallery="harmonia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span data-i18n="proj.shots">Screenshots</span></button></div>
+      </div>
+    </article>
+  </div>
+  <div class="sub-label" data-i18n="proj.more">More projects</div>
   <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 15s-3-2.6-3-5a3 3 0 016 0c0 2.4-3 5-3 5z"/><circle cx="12" cy="10" r=".9" fill="currentColor" stroke="none"/></svg></div>
-      <div class="project-name">Harmonia</div>
-      <div class="project-desc" data-i18n="proj.harmonia.desc">Family safety app for Android: live location sharing, one-tap SOS with a loud alarm and live audio for guardians, geofenced places, and an encrypted SMS fallback when there is no data. Full stack: Expo/React Native with native Kotlin services, a Fastify API and self-hosted PostgreSQL.</div>
-      <div class="project-stack"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Kotlin</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span></div>
-      <div class="project-links"><a class="project-link" href="https://harmonia-safety.vercel.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>harmonia-safety.vercel.app</a></div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:.1s">
-      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="14" y2="7"/><line x1="7" y1="12" x2="19" y2="12"/><line x1="4" y1="17" x2="12" y2="17"/></svg></div>
-      <div class="project-name">Smart Task Planner</div>
-      <div class="project-desc" data-i18n="proj.stp.desc">Project and task management app for Odoo 19 and 20, sold on the Odoo App Store, with no dependency on Enterprise modules: an interactive drag-and-drop Gantt chart with task dependencies, a seven-stage kanban board, a work-session calendar with planned vs actual hours, and an executive dashboard. Department-based access control across four roles.</div>
-      <div class="project-stack"><span class="tag">Odoo 19 / 20</span><span class="tag">Python</span><span class="tag">OWL</span><span class="tag">PostgreSQL</span><span class="tag">JavaScript</span></div>
-      <div class="project-links"><a class="project-link" href="https://apps.odoo.com/apps/modules/19.0/smart_task_planner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Odoo App Store</a></div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:.2s">
-      <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21V8h3v2h2V8h4v2h2V8h3v13z"/><path d="M10 21v-4a2 2 0 014 0v4"/><path d="M12 8V3l3 1.5L12 6"/></svg></div>
-      <div class="project-name">MonstersDuko</div>
-      <div class="project-desc" data-i18n="proj.monsters.desc">Logic puzzle game for Android: find the monsters hidden in each room of a board while climbing a 3D castle of 1,000 levels. Live duels, weekly leagues, team lodges and a board editor. Kotlin/Jetpack Compose app, offline Python puzzle generator and a self-hosted FastAPI + SQLite server.</div>
-      <div class="project-stack"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLite</span></div>
-      <div class="project-links"><a class="project-link" href="https://play.google.com/store/apps/details?id=com.monstersduko" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Google Play</a></div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:.3s">
+    <div class="project-card spot reveal">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1.4"/><circle cx="9" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none"/></svg></div>
       <div class="project-name">Super Proxy Store</div>
       <div class="project-desc" data-i18n="proj.bot.desc">Telegram bot for selling datacenter and residential proxy access. Wallet top-ups via Cryptomus for crypto, plus a manual confirmation flow for OMT, Whish and Syriatel Cash — the Lebanon/Syria payment rails that have no public API. Pluggable supplier adapters behind one provisioning interface.</div>
       <div class="project-stack"><span class="tag">Telegraf</span><span class="tag">Node.js</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span><span class="tag">Cryptomus</span></div>
       <div class="project-links"><a class="project-link" href="https://t.me/myproxystore_bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>@myproxystore_bot</a></div>
     </div>
-    <div class="project-card reveal" style="transition-delay:.4s">
+    <div class="project-card spot reveal" style="transition-delay:.08s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="12" rx="4"/><line x1="7" y1="11" x2="7" y2="15"/><line x1="5" y1="13" x2="9" y2="13"/><circle cx="16" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="18.5" cy="15" r="1.1" fill="currentColor" stroke="none"/></svg></div>
       <div class="project-name">Legends Match</div>
       <div class="project-desc" data-i18n="proj.legends.desc">Mobile memory match game — pair world legends from their young and old photos. Google Sign-In, AdMob monetization, an in-game coin economy with hints, and a referral and cashout system backed by an admin dashboard.</div>
       <div class="project-stack"><span class="tag">Expo</span><span class="tag">React Native</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span><span class="tag">AdMob</span></div>
       <div class="project-links"><span class="project-private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span data-i18n="proj.private">Private repo</span></span></div>
     </div>
-    <div class="project-card reveal" style="transition-delay:.5s">
+    <div class="project-card spot reveal" style="transition-delay:.16s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
       <div class="project-name" data-i18n="proj.odoo.name">Odoo 19 R&D Task Manager</div>
       <div class="project-desc" data-i18n="proj.odoo.desc">Custom ERP module for R&D project tracking with manager delegation and XML workflows.</div>
       <div class="project-stack"><span class="tag">Odoo 19</span><span class="tag">Python</span><span class="tag">PostgreSQL</span></div>
     </div>
-    <div class="project-card reveal" style="transition-delay:.6s">
+    <div class="project-card spot reveal" style="transition-delay:.24s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
       <div class="project-name" data-i18n="proj.oracle.name">Oracle–Web Bridge</div>
       <div class="project-desc" data-i18n="proj.oracle.desc">Enterprise integration layer connecting Oracle databases with modern web architectures.</div>
       <div class="project-stack"><span class="tag">Oracle</span><span class="tag">Python</span><span class="tag">REST API</span></div>
     </div>
-    <div class="project-card reveal" style="transition-delay:.7s">
+    <div class="project-card spot reveal" style="transition-delay:.32s">
       <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
       <div class="project-name" data-i18n="proj.multi.name">Multi-Dept Project Platform</div>
       <div class="project-desc" data-i18n="proj.multi.desc">Full-stack project management system for cross-functional coordination and reporting.</div>
@@ -362,30 +462,37 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 <section class="inner" id="contact">
   <div class="section-label" data-i18n="sec.contact">Get in touch</div>
   <div class="contact-grid">
-    <a class="contact-card reveal" href="mailto:jasemalyounes@gmail.com">
+    <a class="contact-card spot reveal" href="mailto:jasemalyounes@gmail.com">
       <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
       <div style="min-width:0;"><div class="contact-label" data-i18n="contact.email">Email</div><div class="contact-value" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">jasemalyounes@gmail.com</div></div>
     </a>
-    <a class="contact-card reveal" style="transition-delay:.1s" href="https://wa.me/19316237215" target="_blank" rel="noopener">
+    <a class="contact-card spot reveal" style="transition-delay:.1s" href="https://wa.me/19316237215" target="_blank" rel="noopener">
       <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
       <div><div class="contact-label" data-i18n="contact.phone">WhatsApp</div><div class="contact-value">+1 (931) 623-7215</div></div>
     </a>
-    <a class="contact-card reveal" style="transition-delay:.2s" href="https://github.com/jasemalyounes-rgb" target="_blank">
+    <a class="contact-card spot reveal" style="transition-delay:.2s" href="https://github.com/jasemalyounes-rgb" target="_blank">
       <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
       <div><div class="contact-label" data-i18n="contact.github">GitHub</div><div class="contact-value">jasemalyounes-rgb</div></div>
     </a>
-    <div class="contact-card reveal" style="transition-delay:.3s">
+    <div class="contact-card spot reveal" style="transition-delay:.3s">
       <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
       <div><div class="contact-label" data-i18n="contact.location">Location</div><div class="contact-value" data-i18n="meta.location">Beirut, Lebanon</div></div>
     </div>
   </div>
 </section>
 
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshots">
+  <button class="lb-btn lb-close" type="button" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous">‹</button>
+  <figure><img alt=""><figcaption></figcaption><div class="lb-dots"></div></figure>
+  <button class="lb-btn lb-next" type="button" aria-label="Next">›</button>
+</div>
+
 <footer><p>© 2026 Jasem Ahmad Alyounes · <a href="https://github.com/jasemalyounes-rgb" target="_blank" style="color:var(--accent);">github.com/jasemalyounes-rgb</a> · <a href="services.html" style="color:var(--accent);" data-i18n="footer.services">Freelance services →</a></p></footer>
 
 <script>
 /* ---- I18N ---- */
-var I18N = {"nav.about":"نبذة","nav.skills":"المهارات","nav.experience":"الخبرات","nav.projects":"المشاريع","nav.services":"الخدمات","nav.contact":"تواصل","hero.available":"متاح للفرص الجديدة","hero.cred":"مطوّر أنظمة Odoo ERP","hero.credLink":"منشور على متجر تطبيقات Odoo","hero.cta":"تواصل معي","hero.cv":"تحميل السيرة الذاتية (PDF)","hero.services":"الخدمات ←","meta.location":"بيروت، لبنان","meta.exp":"خبرة +14 سنة","sec.about":"نبذة عني","sec.skills":"المهارات التقنية","sec.experience":"الخبرات العملية","sec.projects":"المشاريع","sec.services":"الخدمات والأسعار","sec.contact":"تواصل معي","about.p1":"مهندس برمجيات أول حاصل على ماجستير في علوم الويب وبكالوريوس في هندسة البرمجيات، مع أكثر من أربعة عشر عامًا من الخبرة في بناء تطبيقات متكاملة قابلة للتوسّع.","about.p2":"خبير في Odoo 12–20 وPython، وربط بيانات المؤسسات المعقّدة (Oracle) بمعماريات الويب الحديثة. حاصل على شهادة CCNA، ويتقن العربية والإنجليزية.","stat.years":"سنوات الخبرة","stat.msc":"علوم الويب — الجامعة الافتراضية","stat.bsc":"هندسة البرمجيات","stat.ccna":"معتمد","skill.languages":"لغات البرمجة","skill.frameworks":"أطر العمل","skill.databases":"قواعد البيانات","skill.apis":"الواجهات والأدوات","skill.pm":"إدارة المشاريع","skill.net":"الشبكات","tag.coordination":"التنسيق","tag.reporting":"إعداد التقارير","tag.riskid":"تحديد المخاطر","tag.itinfra":"البنية التحتية","tag.xmlviews":"واجهات XML","exp1.title":"مطوّر ومستشار أنظمة ERP مستقل","exp1.company":"بيروت، لبنان","exp1.period":"أيلول 2024 – حتى الآن","exp1.b1":"استبدال نظام تتبّع إنتاج قائم على جداول البيانات (16 جدولًا مترابطًا، نحو 13,000 سجل تاريخي) بوحدة تصنيع مخصّصة على Odoo 19 تغطي مسارات التحضير بالليزر والتفريز والقياس وضبط الجودة والتصنيف والتغليف.","exp1.b2":"نشر تطبيق Smart Task Planner على متجر تطبيقات Odoo للإصدارين 19 و20 — تطبيق مستقل لإدارة المشاريع دون الاعتماد على النسخة المؤسسية، مع ترحيله إلى نموذج الصلاحيات الجديد في Odoo 20 وإلى OWL 3.","exp1.b3":"تنفيذ أعمال ترحيل وتوافق على Odoo 19: الحقول المهملة، وترميز XML، وتغييرات بنية العروض.","exp1.b4":"إدارة خوادم Linux VPS: وكيل Nginx العكسي، وشهادات SSL/HTTPS، وخدمات systemd، والنسخ الاحتياطي المؤتمت.","exp1.b5":"بناء وإطلاق منتجاتي الخاصة بالكامل: MonstersDuko، لعبة ألغاز على Google Play مبنية بـ Kotlin وJetpack Compose وFastAPI، وHarmonia، تطبيق أمان عائلي بخدمات Kotlin أصلية تعمل في الخلفية وخادم Fastify/PostgreSQL مستضاف ذاتيًا.","exp2.title":"رئيس القسم التقني","exp2.company":"Lazer Net ISP، دمشق، سوريا","exp2.period":"كانون الثاني 2019 – أيلول 2024","exp2.note":"تمّت الترقية من مهندس أنظمة","exp2.b1":"قيادة العمليات التقنية في 14 محافظة مع فريق من مهندسَين، وتولّي دورة حياة المشاريع كاملةً من تحليل المتطلبات حتى النشر والدعم.","exp2.b2":"تصميم وصيانة قواعد بيانات علائقية معقّدة على Oracle وSQL.","exp2.b3":"إدارة البنية التحتية للشبكات والدعم التقني في جميع المواقع.","exp2.b4":"تصميم وتقديم دورات تدريبية في البرمجة وأنظمة التشغيل وقواعد البيانات (SQL) والشبكات.","exp3.title":"مهندس أنظمة وبرمجيات","exp3.company":"القطاع الخاص","exp3.period":"2012 – 2019","exp3.note":"تفاصيل هذا الدور مشمولة باتفاقية سرّية.","exp3.b1":"تطوير تطبيقات سطح مكتب مدعومة بقواعد بيانات علائقية.","exp3.b2":"إدارة الخوادم والبنية التحتية المساندة.","exp3.b3":"العمل على معالجة البيانات وإعداد التقارير.","exp3.b4":"تقديم تدريب تقني للموظفين.","proj.harmonia.desc":"تطبيق أمان عائلي لأجهزة Android: مشاركة الموقع المباشر، وزر SOS بلمسة واحدة يطلق إنذارًا عاليًا وينقل صوتًا مباشرًا إلى الأوصياء، وأماكن محددة بسياج جغرافي، وبديل عبر رسائل SMS مشفّرة عند انقطاع الإنترنت. تطوير كامل: Expo/React Native مع خدمات Kotlin أصلية، وواجهة Fastify API، وقاعدة بيانات PostgreSQL مستضافة ذاتيًا.","proj.stp.desc":"تطبيق لإدارة المشاريع والمهام على Odoo 19 و20 منشور على متجر تطبيقات Odoo، لا يعتمد على وحدات Enterprise، ويضم مخطط Gantt تفاعليًا يدعم السحب والإفلات وتبعيات المهام، ولوحة Kanban من سبع مراحل، وتقويمًا لجلسات العمل يقارن الساعات المخططة بالفعلية، ولوحة معلومات للإدارة التنفيذية. يتحكم بالصلاحيات حسب القسم عبر أربعة أدوار.","proj.monsters.desc":"لعبة ألغاز منطقية لأندرويد: ابحث عن الوحوش المختبئة في غرف كل لوحة وأنت تصعد قلعة ثلاثية الأبعاد من 1000 مرحلة. مبارزات مباشرة، ودوري أسبوعي، وفرق للّاعبين، ومحرر لصنع اللوحات. تطبيق مبني بـ Kotlin وJetpack Compose، ومولّد ألغاز بلغة Python يعمل دون اتصال، وخادم FastAPI مع SQLite مستضاف ذاتيًا.","proj.bot.desc":"بوت تيليجرام لبيع خدمات البروكسي من مراكز البيانات والبروكسي السكني. شحن المحفظة بالعملات الرقمية عبر Cryptomus، إضافةً إلى مسار تأكيد يدوي لخدمات OMT وWhish وسيريتل كاش — قنوات الدفع في لبنان وسوريا التي لا تملك واجهات برمجية عامة. مُهيّئات موردين قابلة للتبديل خلف واجهة تزويد واحدة.","proj.legends.desc":"لعبة ذاكرة للهواتف المحمولة — طابِق بين صور المشاهير في شبابهم وكبرهم. تسجيل دخول عبر Google، وتحقيق دخل بواسطة AdMob، واقتصاد عملات داخل اللعبة مع تلميحات، ونظام إحالة وصرف مدعوم بلوحة تحكّم إدارية.","proj.private":"مستودع خاص","proj.odoo.name":"مدير مهام البحث والتطوير على Odoo 19","proj.odoo.desc":"وحدة ERP مخصّصة لتتبّع مشاريع البحث والتطوير مع تفويض المدراء وسير عمل XML.","proj.oracle.name":"جسر Oracle والويب","proj.oracle.desc":"طبقة تكامل مؤسسية تربط قواعد بيانات Oracle بمعماريات الويب الحديثة.","proj.multi.name":"منصّة مشاريع متعدّدة الأقسام","proj.multi.desc":"نظام متكامل لإدارة المشاريع يدعم التنسيق بين الأقسام وإعداد التقارير.","services.intro":"اختر الخدمة ثم الباقة المناسبة. كل المشاريع تبدأ باستشارة مجانية.","contact.email":"البريد الإلكتروني","contact.phone":"واتساب","contact.github":"جيت‌هاب","contact.location":"الموقع","footer.services":"خدمات مستقلة ←"};
+var I18N = {"nav.about":"نبذة","nav.skills":"المهارات","nav.experience":"الخبرات","nav.projects":"المشاريع","nav.services":"الخدمات","nav.contact":"تواصل","hero.available":"متاح للفرص الجديدة","hero.cred":"مطوّر أنظمة Odoo ERP","hero.credLink":"منشور على متجر تطبيقات Odoo","hero.cta":"تواصل معي","hero.cv":"تحميل السيرة الذاتية (PDF)","hero.services":"الخدمات ←","meta.location":"بيروت، لبنان","meta.exp":"خبرة +14 سنة","sec.about":"نبذة عني","sec.skills":"المهارات التقنية","sec.experience":"الخبرات العملية","sec.projects":"المشاريع","sec.services":"الخدمات والأسعار","sec.contact":"تواصل معي","about.p1":"مهندس برمجيات أول حاصل على ماجستير في علوم الويب وبكالوريوس في هندسة البرمجيات، مع أكثر من أربعة عشر عامًا من الخبرة في بناء تطبيقات متكاملة قابلة للتوسّع.","about.p2":"خبير في Odoo 12–20 وPython، وربط بيانات المؤسسات المعقّدة (Oracle) بمعماريات الويب الحديثة. حاصل على شهادة CCNA، ويتقن العربية والإنجليزية.","stat.years":"سنوات الخبرة","stat.msc":"علوم الويب — الجامعة الافتراضية","stat.bsc":"هندسة البرمجيات","stat.ccna":"معتمد","skill.languages":"لغات البرمجة","skill.frameworks":"أطر العمل","skill.databases":"قواعد البيانات","skill.apis":"الواجهات والأدوات","skill.pm":"إدارة المشاريع","skill.net":"الشبكات","tag.coordination":"التنسيق","tag.reporting":"إعداد التقارير","tag.riskid":"تحديد المخاطر","tag.itinfra":"البنية التحتية","tag.xmlviews":"واجهات XML","exp1.title":"مطوّر ومستشار أنظمة ERP مستقل","exp1.company":"بيروت، لبنان","exp1.period":"أيلول 2024 – حتى الآن","exp1.b1":"استبدال نظام تتبّع إنتاج قائم على جداول البيانات (16 جدولًا مترابطًا، نحو 13,000 سجل تاريخي) بوحدة تصنيع مخصّصة على Odoo 19 تغطي مسارات التحضير بالليزر والتفريز والقياس وضبط الجودة والتصنيف والتغليف.","exp1.b2":"نشر تطبيق Smart Task Planner على متجر تطبيقات Odoo للإصدارين 19 و20 — تطبيق مستقل لإدارة المشاريع دون الاعتماد على النسخة المؤسسية، مع ترحيله إلى نموذج الصلاحيات الجديد في Odoo 20 وإلى OWL 3.","exp1.b3":"تنفيذ أعمال ترحيل وتوافق على Odoo 19: الحقول المهملة، وترميز XML، وتغييرات بنية العروض.","exp1.b4":"إدارة خوادم Linux VPS: وكيل Nginx العكسي، وشهادات SSL/HTTPS، وخدمات systemd، والنسخ الاحتياطي المؤتمت.","exp1.b5":"بناء وإطلاق منتجاتي الخاصة بالكامل: MonstersDuko، لعبة ألغاز على Google Play مبنية بـ Kotlin وJetpack Compose وFastAPI، وHarmonia، تطبيق أمان عائلي بخدمات Kotlin أصلية تعمل في الخلفية وخادم Fastify/PostgreSQL مستضاف ذاتيًا.","exp2.title":"رئيس القسم التقني","exp2.company":"Lazer Net ISP، دمشق، سوريا","exp2.period":"كانون الثاني 2019 – أيلول 2024","exp2.note":"تمّت الترقية من مهندس أنظمة","exp2.b1":"قيادة العمليات التقنية في 14 محافظة مع فريق من مهندسَين، وتولّي دورة حياة المشاريع كاملةً من تحليل المتطلبات حتى النشر والدعم.","exp2.b2":"تصميم وصيانة قواعد بيانات علائقية معقّدة على Oracle وSQL.","exp2.b3":"إدارة البنية التحتية للشبكات والدعم التقني في جميع المواقع.","exp2.b4":"تصميم وتقديم دورات تدريبية في البرمجة وأنظمة التشغيل وقواعد البيانات (SQL) والشبكات.","exp3.title":"مهندس أنظمة وبرمجيات","exp3.company":"القطاع الخاص","exp3.period":"2012 – 2019","exp3.note":"تفاصيل هذا الدور مشمولة باتفاقية سرّية.","exp3.b1":"تطوير تطبيقات سطح مكتب مدعومة بقواعد بيانات علائقية.","exp3.b2":"إدارة الخوادم والبنية التحتية المساندة.","exp3.b3":"العمل على معالجة البيانات وإعداد التقارير.","exp3.b4":"تقديم تدريب تقني للموظفين.","proj.harmonia.desc":"تطبيق أمان عائلي لأجهزة Android: مشاركة الموقع المباشر، وزر SOS بلمسة واحدة يطلق إنذارًا عاليًا وينقل صوتًا مباشرًا إلى الأوصياء، وأماكن محددة بسياج جغرافي، وبديل عبر رسائل SMS مشفّرة عند انقطاع الإنترنت. تطوير كامل: Expo/React Native مع خدمات Kotlin أصلية، وواجهة Fastify API، وقاعدة بيانات PostgreSQL مستضافة ذاتيًا.","proj.stp.desc":"تطبيق لإدارة المشاريع والمهام على Odoo 19 و20 منشور على متجر تطبيقات Odoo، لا يعتمد على وحدات Enterprise، ويضم مخطط Gantt تفاعليًا يدعم السحب والإفلات وتبعيات المهام، ولوحة Kanban من سبع مراحل، وتقويمًا لجلسات العمل يقارن الساعات المخططة بالفعلية، ولوحة معلومات للإدارة التنفيذية. يتحكم بالصلاحيات حسب القسم عبر أربعة أدوار.","proj.monsters.desc":"لعبة ألغاز منطقية لأندرويد: ابحث عن الوحوش المختبئة في غرف كل لوحة وأنت تصعد قلعة ثلاثية الأبعاد من 1000 مرحلة. مبارزات مباشرة، ودوري أسبوعي، وفرق للّاعبين، ومحرر لصنع اللوحات. تطبيق مبني بـ Kotlin وJetpack Compose، ومولّد ألغاز بلغة Python يعمل دون اتصال، وخادم FastAPI مع SQLite مستضاف ذاتيًا.","proj.bot.desc":"بوت تيليجرام لبيع خدمات البروكسي من مراكز البيانات والبروكسي السكني. شحن المحفظة بالعملات الرقمية عبر Cryptomus، إضافةً إلى مسار تأكيد يدوي لخدمات OMT وWhish وسيريتل كاش — قنوات الدفع في لبنان وسوريا التي لا تملك واجهات برمجية عامة. مُهيّئات موردين قابلة للتبديل خلف واجهة تزويد واحدة.","proj.legends.desc":"لعبة ذاكرة للهواتف المحمولة — طابِق بين صور المشاهير في شبابهم وكبرهم. تسجيل دخول عبر Google، وتحقيق دخل بواسطة AdMob، واقتصاد عملات داخل اللعبة مع تلميحات، ونظام إحالة وصرف مدعوم بلوحة تحكّم إدارية.","proj.private":"مستودع خاص","proj.odoo.name":"مدير مهام البحث والتطوير على Odoo 19","proj.odoo.desc":"وحدة ERP مخصّصة لتتبّع مشاريع البحث والتطوير مع تفويض المدراء وسير عمل XML.","proj.oracle.name":"جسر Oracle والويب","proj.oracle.desc":"طبقة تكامل مؤسسية تربط قواعد بيانات Oracle بمعماريات الويب الحديثة.","proj.multi.name":"منصّة مشاريع متعدّدة الأقسام","proj.multi.desc":"نظام متكامل لإدارة المشاريع يدعم التنسيق بين الأقسام وإعداد التقارير.","services.intro":"اختر الخدمة ثم الباقة المناسبة. كل المشاريع تبدأ باستشارة مجانية.","contact.email":"البريد الإلكتروني","contact.phone":"واتساب","contact.github":"جيت‌هاب","contact.location":"الموقع","footer.services":"خدمات مستقلة ←","hero.work":"شاهد أعمالي","proj.featured":"أعمال مميّزة","proj.more":"مشاريع أخرى","proj.shots":"لقطات الشاشة","badge.store":"على متجر تطبيقات Odoo","badge.play":"على Google Play","badge.live":"يعمل الآن","kick.stp":"Odoo 19 و20 · تطبيق مدفوع","kick.monsters":"لعبة أندرويد · تطوير متكامل","kick.harmonia":"تطبيق أندرويد · تطوير متكامل"};
 var EN = {};
 var curLang = "en";
 // snapshot the English text once, so switching back is lossless
@@ -483,6 +590,84 @@ function observeReveals(){
 }
 observeReveals();
 
+/* ---- ALIVE ---- */
+var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+// scroll progress
+var prog = document.querySelector('.scroll-progress');
+function onScroll(){ var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; prog.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+// nav highlights the section in view
+var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+var secObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(!e.isIntersecting) return;
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
+}, {rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(function(sec){ secObs.observe(sec); });
+// marquee: duplicate the track so the loop is seamless
+var mt = document.querySelector('.marquee-track'); if(mt) mt.innerHTML += mt.innerHTML;
+// cursor spotlight on cards
+document.addEventListener('pointermove', function(e){
+  var c = e.target.closest && e.target.closest('.spot'); if(!c) return;
+  var r = c.getBoundingClientRect();
+  c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+}, {passive:true});
+// count-up stats
+var cntObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return; cntObs.unobserve(e.target);
+    var el = e.target, to = +el.getAttribute('data-count'), suf = el.getAttribute('data-suffix') || '';
+    if(REDUCED){ el.textContent = to + suf; return; }
+    var t0 = null;
+    (function step(ts){ if(!t0) t0 = ts; var p = Math.min((ts - t0) / 1400, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suf; if(p < 1) requestAnimationFrame(step); })(performance.now());
+  });
+}, {threshold:.6});
+document.querySelectorAll('[data-count]').forEach(function(el){ cntObs.observe(el); });
+
+/* ---- GALLERY ---- */
+var GALLERIES = {
+  harmonia: [
+    {src:'img/harmonia-cover.jpg', en:'Harmonia — landing page', ar:'Harmonia — الصفحة الرئيسية'},
+    {src:'img/harmonia-map.jpg', en:'Live family map', ar:'خريطة العائلة المباشرة'},
+    {src:'img/harmonia-feature.jpg', en:'Private by design: location stays in the family', ar:'الخصوصية أولًا: الموقع يبقى داخل العائلة'}
+  ],
+  stp: [
+    {src:'img/stp-gantt.jpg', en:'Interactive Gantt with dependencies and drag-to-reschedule', ar:'مخطط Gantt تفاعلي مع التبعيات وإعادة الجدولة بالسحب'},
+    {src:'img/stp-kanban.jpg', en:'Seven-stage kanban with blocked-by-dependency flags', ar:'لوحة Kanban من سبع مراحل مع إشارات المهام المحجوبة'},
+    {src:'img/stp-executive.jpg', en:'Executive dashboard across departments', ar:'لوحة الإدارة التنفيذية عبر الأقسام'},
+    {src:'img/stp-dashboard.jpg', en:'Personal dashboard with planned vs actual hours', ar:'لوحة شخصية تقارن الساعات المخططة بالفعلية'}
+  ],
+  monsters: [
+    {src:'img/monsters-cover.jpg', en:'MonstersDuko on Google Play', ar:'MonstersDuko على Google Play'},
+    {src:'img/monsters-1.jpg', en:'Climb a 3D castle of chapters', ar:'اصعد قلعة ثلاثية الأبعاد من الفصول'},
+    {src:'img/monsters-2.jpg', en:'Every room tells you how many monsters hide inside', ar:'كل غرفة تخبرك بعدد الوحوش المختبئة فيها'},
+    {src:'img/monsters-3.jpg', en:'Boss lairs that bend the rules', ar:'أوكار الزعماء تغيّر القواعد'}
+  ]
+};
+var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('figcaption'), lbDots = lb.querySelector('.lb-dots');
+var lbSet = null, lbIdx = 0, lbLast = null;
+function lbShow(i){
+  lbIdx = (i + lbSet.length) % lbSet.length; var it = lbSet[lbIdx];
+  lbImg.src = it.src; lbImg.alt = curLang === 'ar' ? it.ar : it.en; lbCap.textContent = lbImg.alt;
+  lbDots.innerHTML = lbSet.map(function(_, k){ return '<i' + (k === lbIdx ? ' class="on"' : '') + '></i>'; }).join('');
+  lbSet.forEach(function(x, k){ if(Math.abs(k - lbIdx) === 1){ var p = new Image(); p.src = x.src; } });
+}
+function lbOpen(name){ lbSet = GALLERIES[name]; if(!lbSet) return; lbLast = document.activeElement; lbShow(0); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.lb-close').focus(); }
+function lbClose(){ lb.classList.remove('open'); document.body.style.overflow = ''; if(lbLast) lbLast.focus(); }
+document.querySelectorAll('[data-gallery]').forEach(function(b){ b.addEventListener('click', function(){ lbOpen(b.getAttribute('data-gallery')); }); });
+lb.querySelector('.lb-close').addEventListener('click', lbClose);
+lb.querySelector('.lb-prev').addEventListener('click', function(){ lbShow(lbIdx - 1); });
+lb.querySelector('.lb-next').addEventListener('click', function(){ lbShow(lbIdx + 1); });
+lb.addEventListener('click', function(e){ if(e.target === lb) lbClose(); });
+document.addEventListener('keydown', function(e){
+  if(!lb.classList.contains('open')) return;
+  var rtl = document.documentElement.dir === 'rtl';
+  if(e.key === 'Escape') lbClose();
+  else if(e.key === 'ArrowRight') lbShow(lbIdx + (rtl ? -1 : 1));
+  else if(e.key === 'ArrowLeft') lbShow(lbIdx + (rtl ? 1 : -1));
+});
+var tx0 = null;
+lb.addEventListener('touchstart', function(e){ tx0 = e.touches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend', function(e){ if(tx0 === null) return; var dx = e.changedTouches[0].clientX - tx0; if(Math.abs(dx) > 40) lbShow(lbIdx + (dx < 0 ? 1 : -1)); tx0 = null; });
 
 // restore saved language (must run after the builders are defined)
 // ?lang=ar (or #ar) wins over the saved preference, so an Arabic link is shareable
@@ -490,5 +675,6 @@ var _q = (location.search.match(/[?&]lang=(ar|en)/)||[])[1] || (location.hash===
 try{ var _sl = _q || localStorage.getItem("lang"); }catch(e){ var _sl = _q; }
 applyLang(_sl === "ar" ? "ar" : "en");
 </script>
+<script src="assets/chat.js" defer></script>
 </body>
 </html>
