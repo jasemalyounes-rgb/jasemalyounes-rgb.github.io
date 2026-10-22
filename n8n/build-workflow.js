@@ -38,7 +38,11 @@ const workflow = {
       type: '@n8n/n8n-nodes-langchain.lmChatGoogleGemini',
       typeVersion: 1,
       position: [180, 220],
-      parameters: { modelName: 'models/gemini-2.5-flash', options: { temperature: 0.4, maxOutputTokens: 600 } },
+      // Gemini returns 503 "high demand" in spikes; retry before failing the chat
+      retryOnFail: true,
+      maxTries: 3,
+      waitBetweenTries: 2000,
+      parameters: { modelName: 'models/gemini-3.8-flash', options: { temperature: 0.4, maxOutputTokens: 600 } },
     },
     {
       id: 'c1b6c1a0-0004-4c55-9a51-000000000004',

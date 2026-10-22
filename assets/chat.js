@@ -165,15 +165,22 @@
     var typing = document.createElement('div');
     typing.className = 'cb-msg cb-bot cb-typing'; typing.innerHTML = '<i></i><i></i><i></i>';
     msgs.appendChild(typing); msgs.scrollTop = msgs.scrollHeight;
+    // n8n retries Gemini when it's overloaded, so a reply can take well over a minute
     var ctrl = window.AbortController ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 45000);
-    fetch(CHAT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'sendMessage', sessionId: sessionId, chatInput: text, metadata: { lang: lang(), page: location.pathname } }),
-      signal: ctrl ? ctrl.signal : undefined
-    })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 110000);
+    function ask(retries) {
+      return fetch(CHAT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'sendMessage', sessionId: sessionId, chatInput: text, metadata: { lang: lang(), page: location.pathname } }),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (r) {
+        if (r.status >= 500 && retries > 0) return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return ask(retries - 1); });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      });
+    }
+    ask(1)
       .then(function (data) {
         var d = Array.isArray(data) ? data[0] : data;
         var reply = d && (d.output || d.text || d.message);

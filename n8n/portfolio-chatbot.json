@@ -46,8 +46,11 @@
         180,
         220
       ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
       "parameters": {
-        "modelName": "models/gemini-2.5-flash",
+        "modelName": "models/gemini-3.8-flash",
         "options": {
           "temperature": 0.4,
           "maxOutputTokens": 600
