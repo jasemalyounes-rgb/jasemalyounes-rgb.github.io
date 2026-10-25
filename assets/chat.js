@@ -10,7 +10,7 @@
       title: "Jasem's assistant", status: 'AI · replies in seconds',
       hello: "Hi! 👋 I can tell you about Jasem's projects, skills and services, or help you get in touch. What would you like to know?",
       teaser: 'Questions? Ask my assistant', placeholder: 'Ask about projects, skills, hiring…',
-      send: 'Send', open: 'Open chat', close: 'Close chat', label: 'Ask my AI',
+      send: 'Send', open: 'Open chat', close: 'Close chat',
       chips: ['What has Jasem built?', 'Is he available for freelance?', 'Tell me about his Odoo work', 'How can I contact him?'],
       error: "Sorry, I can't reach the assistant right now. You can email jasemalyounes@gmail.com or message +1 (931) 623-7215 on WhatsApp.",
       note: 'AI answers can be imperfect — confirm details with Jasem.'
@@ -19,7 +19,7 @@
       title: 'مساعد جاسم', status: 'ذكاء اصطناعي · يرد خلال ثوانٍ',
       hello: 'أهلاً! 👋 يمكنني إخبارك عن مشاريع جاسم ومهاراته وخدماته، أو مساعدتك في التواصل معه. ماذا تريد أن تعرف؟',
       teaser: 'لديك سؤال؟ اسأل مساعدي', placeholder: 'اسأل عن المشاريع أو المهارات أو التوظيف…',
-      send: 'إرسال', open: 'فتح المحادثة', close: 'إغلاق المحادثة', label: 'اسأل مساعدي',
+      send: 'إرسال', open: 'فتح المحادثة', close: 'إغلاق المحادثة',
       chips: ['ما المشاريع التي بناها جاسم؟', 'هل هو متاح للعمل الحر؟', 'حدثني عن خبرته في Odoo', 'كيف أتواصل معه؟'],
       error: 'عذرًا، لا يمكن الوصول إلى المساعد حاليًا. يمكنك مراسلة jasemalyounes@gmail.com أو التواصل عبر واتساب على ‎+1 (931) 623-7215.',
       note: 'قد تكون إجابات الذكاء الاصطناعي غير دقيقة — تأكد من التفاصيل مع جاسم.'
@@ -34,7 +34,7 @@
     '.cb-launch svg{width:26px;height:26px;transition:transform .3s,opacity .2s;}',
     '.cb-launch .cb-x{position:absolute;opacity:0;transform:rotate(-90deg);}',
     '.cb-open .cb-launch .cb-x{opacity:1;transform:none;} .cb-open .cb-launch .cb-bubble{opacity:0;transform:rotate(90deg);}',
-    '.cb-launch::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--accent,#2563eb);animation:cbRing 2.6s ease-out infinite;}',
+    '.cb-launch::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent,#2563eb);animation:cbRing 2.6s ease-out infinite;}',
     '.cb-open .cb-launch::after{display:none;}',
     '@keyframes cbRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}',
     '.cb-teaser{position:fixed;bottom:34px;inset-inline-end:92px;z-index:900;background:var(--bg,#fff);color:var(--text,#1a1a1a);border:1px solid var(--border,#e2e2da);border-radius:14px;padding:9px 30px 9px 14px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(8px) scale(.96);transition:all .35s;pointer-events:none;max-width:230px;}',
@@ -72,11 +72,7 @@
     '.cb-form button:not(:disabled):hover{transform:scale(1.07);}',
     'html[dir="rtl"] .cb-form button svg{transform:scaleX(-1);}',
     '.cb-note{font-size:10.5px;color:var(--text3,#999);text-align:center;padding:0 12px 8px;background:var(--bg,#fff);}',
-    '.cb-label{display:none;}',
-    // phones have no room for the teaser, so the button carries its own label
-    '@media(max-width:520px){.cb-launch{bottom:16px;inset-inline-end:16px;width:auto;height:54px;padding:0 20px 0 16px;gap:8px;border-radius:99px;font-family:inherit;font-size:16px;font-weight:600;line-height:1;} .cb-label{display:inline;} .cb-launch:hover{transform:scale(1.04);}' +
-    ' .cb-open .cb-launch{width:54px;padding:0;} .cb-open .cb-label{display:none;}' +
-    ' .cb-msg{font-size:15.5px;} .cb-chips button{font-size:14px;padding:8px 13px;} .cb-head b{font-size:16px;} .cb-head small{font-size:13px;} .cb-note{font-size:12px;} .cb-panel{inset-inline-end:8px;bottom:80px;width:calc(100vw - 16px);height:calc(100vh - 96px);height:calc(100dvh - 96px);} .cb-form input{font-size:16px;} .cb-teaser{display:none;}}',
+    '@media(max-width:520px){.cb-launch{bottom:16px;inset-inline-end:16px;width:54px;height:54px;} .cb-panel{inset-inline-end:8px;bottom:80px;width:calc(100vw - 16px);height:calc(100vh - 96px);height:calc(100dvh - 96px);} .cb-form input{font-size:16px;} .cb-teaser{display:none;}}',
     '@media(prefers-reduced-motion:reduce){.cb-launch::after{animation:none;} .cb-msg{animation:none;}}'
   ].join('');
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
@@ -96,7 +92,7 @@
       '<form class="cb-form"><input type="text" maxlength="500" autocomplete="off"><button type="submit" disabled>' + ICON_SEND + '</button></form>' +
       '<div class="cb-note"></div>' +
     '</section>' +
-    '<button class="cb-launch" type="button">' + ICON_CHAT + ICON_X + '<span class="cb-label" aria-hidden="true"></span></button>';
+    '<button class="cb-launch" type="button">' + ICON_CHAT + ICON_X + '</button>';
   document.body.appendChild(root);
 
   var $ = function (s) { return root.querySelector(s); };
@@ -152,7 +148,6 @@
     $('.cb-title').textContent = t('title');
     $('.cb-status').textContent = t('status');
     $('.cb-tt').textContent = t('teaser');
-    $('.cb-label').textContent = t('label');
     $('.cb-note').textContent = t('note');
     input.placeholder = t('placeholder');
     sendBtn.setAttribute('aria-label', t('send'));
