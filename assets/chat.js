@@ -72,7 +72,7 @@
     '.cb-form button:not(:disabled):hover{transform:scale(1.07);}',
     'html[dir="rtl"] .cb-form button svg{transform:scaleX(-1);}',
     '.cb-note{font-size:10.5px;color:var(--text3,#999);text-align:center;padding:0 12px 8px;background:var(--bg,#fff);}',
-    '@media(max-width:520px){.cb-panel{inset-inline-end:8px;bottom:84px;width:calc(100vw - 16px);height:calc(100vh - 110px);} .cb-teaser{display:none;}}',
+    '@media(max-width:520px){.cb-launch{bottom:16px;inset-inline-end:16px;width:54px;height:54px;} .cb-panel{inset-inline-end:8px;bottom:80px;width:calc(100vw - 16px);height:calc(100vh - 96px);height:calc(100dvh - 96px);} .cb-form input{font-size:16px;} .cb-teaser{display:none;}}',
     '@media(prefers-reduced-motion:reduce){.cb-launch::after{animation:none;} .cb-msg{animation:none;}}'
   ].join('');
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
