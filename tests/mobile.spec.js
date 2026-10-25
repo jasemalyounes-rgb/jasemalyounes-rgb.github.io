@@ -23,3 +23,25 @@ for (const width of [320, 390]) {
     }
   });
 }
+
+test.describe('phone screenshot gallery', () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+
+  test('tapping a screenshot shows it at full size, and tapping again fits it back', async ({ page }) => {
+    await openPage(page, '/');
+    await page.locator('.feat-media').first().click();
+    const img = page.locator('#lightbox img');
+    await expect(page.locator('#lightbox')).toHaveClass(/zoomable/);
+    const fitted = await img.evaluate((i) => i.clientWidth);
+    expect(fitted).toBeLessThanOrEqual(390);
+
+    await img.tap();
+    await expect(page.locator('#lightbox')).toHaveClass(/\bzoom\b/);
+    expect(await img.evaluate((i) => i.clientWidth)).toBe(await img.evaluate((i) => i.naturalWidth));
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+
+    await img.tap();
+    await expect(page.locator('#lightbox')).not.toHaveClass(/\bzoom\b/);
+    expect(await img.evaluate((i) => i.clientWidth)).toBe(fitted);
+  });
+});
