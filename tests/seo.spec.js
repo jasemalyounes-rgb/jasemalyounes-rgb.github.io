@@ -48,6 +48,17 @@ for (const p of PAGES) {
       expect(await meta(page, 'meta[name="twitter:card"]')).toBeTruthy();
     });
 
+    test('has a browser tab icon, an SVG icon and a home-screen icon that load', async ({ page, request }) => {
+      for (const sel of ['link[rel="icon"][href$=".ico"]', 'link[rel="icon"][type="image/svg+xml"]', 'link[rel="apple-touch-icon"]']) {
+        await expect(page.locator(sel), sel).toHaveCount(1);
+        const href = await page.locator(sel).getAttribute('href');
+        const res = await request.get(new URL(href, page.url()).pathname);
+        expect(res.status(), `${sel} → ${href}`).toBe(200);
+      }
+      // browsers ask for /favicon.ico on their own, even on pages without the link
+      expect((await request.get('/favicon.ico')).status()).toBe(200);
+    });
+
     test('social share image exists', async ({ page, request }) => {
       for (const sel of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
         const img = await meta(page, sel);
